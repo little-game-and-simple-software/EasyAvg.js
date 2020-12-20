@@ -1,19 +1,38 @@
 <!doctype html>
 <html>
-	<head> 
-		<meta charset="UTF-8"> 
-		<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"> 
-<script src="core.js"></script>
-	</head> 
-	<body> 
-		<h1> 
-			EasyAvgFramework 
-		</h1> 
-	<img alt="背景" />
-   	<img alt="人物" />
-   <button>开始</button>
-		<h6> 
-			Copyright &copy; 2020 128hh. 
-		</h6>  
-	</body>
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"> 
+        <script src="core.js"></script> 
+      
+        <script src="jQuery_main.js"></script>
+<script>
+
+$(function()
+{
+ var e=new EasyAvg()
+ var img1=e.create_img("croped-image.jpg")
+
+$("#bg").append(img1)
+var btn=e.create_btn("按钮1")
+console.log(typeof(btn))
+$("#bg").append(btn)
+var bgm=e.init_bgm()
+$("#bg").append(bgm)
+var back=e.create_TextBackground()
+$("#bg").append(back)
+var t=e.get_tree()
+console.log(t)
+}
+)
+</script>
+    </head> 
+    <body> 
+        <h1> EasyAvgFramework </h1> 
+        <img alt="背景"> 
+        <img alt="人物"> 
+        <button>开始</button> 
+        <div id="bg">43523</div>
+        <h6> Copyright © 2020 128hh. </h6>  
+    </body>
 </html>
