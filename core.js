@@ -12,6 +12,11 @@ function EasyAvg()
         return sceen_objs
 }
       //初始化
+      this.init=function ()
+      {
+      this.init_bgm()
+      this.create_TextBackground()
+      }
    this.init_bgm= function(src,auto_play)
    {
        //创建bgm
@@ -32,12 +37,15 @@ function EasyAvg()
            tmp_img.height=height*/
            return tmp_img
 }
-//创建avg背景图片
-this.create_TextBackground=function()
+//创建avg背景对话框
+this.create_TextBackground=function(color)
 {
    var tmp_p=$("<p>dfvb</p>")
-   tmp_p.css("background","red")
-   
+   tmp_p.css("background","orange")
+   //对话框在最上面
+   tmp_p.css("z-index",20)
+   tmp_p.css("border","solid","border-width","1px")
+   tmp_p.css("position","absolute","top",0)
    return tmp_p
 }
 //存档读档
