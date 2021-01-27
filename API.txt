@@ -1,0 +1,28 @@
+EasyAvg——》核心引擎类
+ EasyAvg.create_img 创建图片对象 参数src：图片文件地址 alt=当图片无法加载时的描述
+返回Image对象
+EasyAvg.create_TextBackground 创建背景对话框
+参数 color颜色值
+EasyAvg.scale_img 修改图片大小 参数img scale
+
+EasyAvg.create_BackroundImg创建背景图片 参数img对象
+
+文件系统API cookie fileSystem NOTE没有开发
+使用jQuery cookie插件保存进度
+EasyAvg.save(mode,value) 参数 mode使用的存档api value值
+
+基于jquery +html5 js 没有用canvas
+凡是用EasyAvg框架创建的对象，一般都可以使用jquery方法，比较灵活，不会封装死了
+
+jquery常用对象方法 NOTE一下用$表示Jquery对象 是伪代码
+
+NOTE 为对象创建click事件，并执行function内部代码
+$.click(function()
+{
+
+})
+NOTE 修改对象文字，仅对文字对象有效
+$.text("值")
+
+NOTE 获取'$'对象熟悉值
+$.attr()

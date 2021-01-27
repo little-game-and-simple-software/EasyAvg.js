@@ -1,40 +1,22 @@
 <!doctype html>
 <html>
-    <head> 
-        <meta charset="UTF-8"> 
-        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"> 
-        <script src="core.js"></script> 
-      
-        <script src="jQuery_main.js"></script>
-<script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+        <!--框架运行强制依赖js插件-->
+        <!--<script src="jQuery_main.js"></script>-->
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="core.js"></script>
+        <script src="Logic.js"></script>
+        <script src="bgm.js"></script>
 
-$(function()
-{
- var e=new EasyAvg()
- var img1=e.create_img("croped-image.jpg")
- e.init()
-/*
-$("#bg").append(img1)
-var btn=e.create_btn("按钮1")
-console.log(typeof(btn))
-var back=e.create_TextBackground()
-$("#bg").append(back)
-var t=e.get_tree()
-console.log(t)
-$("#bg").append(btn)
-var bgm=e.init_bgm()
-$("#bg").append(bgm)
-*/
-}
-)
-</script>
-    </head> 
-    <body> 
-        <h1> EasyAvgFramework </h1> 
-        <img alt="背景"> 
-        <img alt="人物"> 
-        <button>开始</button> 
+    </head>
+    <body>
+      <audio id="bgm" src="rain.mp3" controls></audio>
+        <h1> EasyAvgFramework </h1>
+        <button>开始</button>
         <div id="bg">43523</div>
-        <h6> Copyright © 2020 128hh. </h6>  
+        <h6> Copyright © 2020 小沙盒工作室&128hh. </h6>
     </body>
 </html>

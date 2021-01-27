@@ -1,0 +1,5 @@
+// todo: 用户自定义EasyAvg中的ui对象样式 (css文件) file css文件
+this.setCustomStyle=function(obj,file)
+{
+//  obj.css=file
+}
