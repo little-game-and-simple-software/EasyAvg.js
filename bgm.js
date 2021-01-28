@@ -1,14 +1,11 @@
 // NOTE: 播放音乐js
-function Bgm()
+$(function()
 {
-  this.p=function()
+  $("#start").click(function()
   {
-    $("#bgm")[0].play()
-  }
-}
-console.log($("#bgm"))
-//new Bgm().p()
-//$("#bgm")[0].play()
-//bgm.attr("src","running in the rain (feat. Sashenka).mp3")
-//bgm.attr("controls",true)
-//$("body").append(bgm)
+    var b=$("#bgm")
+    console.log(b)
+    b[0].play()
+  })
+
+})

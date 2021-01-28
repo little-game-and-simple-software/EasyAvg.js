@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>完整项目展示</title>
+    <!--框架运行强制依赖js插件-->
+    <!--<script src="jQuery_main.js"></script>-->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../core.js"></script>
+    <script src="Logic.js"></script>
+    <script src="../FileSystem.js"></script>
+    <script src="../bgm.js"></script>
+    <script src="../changeScene.js"></script>
+    <link rel="stylesheet" href="css/btn.css">
+  </head>
+  <body>
+    <h1 align="center">请点击图片来播放游戏背景音乐</h1>
+    <img src="img/n01.jpg" id="bg" alt="no1">
+    <button id="newGame">新游戏</button>
+    <button id="loadGame">读取</button>
+    <button id="dev">开发室</button>
+    <button id="free">免费声明</button>
+    <button id="exit">终了</button>
+    <audio id="bgm" src="bgm/i72015_scenery_of_spring.ogg" controls></audio>
+  </body>
+</html>

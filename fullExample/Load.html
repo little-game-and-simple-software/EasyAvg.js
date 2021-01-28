@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>读档</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../core.js"></script>
+    <script src="../FileSystem.js"></script>
+    <script src="../bgm.js"></script>
+    <script src="../changeScene.js"></script>
+  </head>
+  <body>
+    <img src="img/mini_menu_save.jpg">
+    <ol>
+      <li>存档一</li>
+      <li>存档二</li>
+      <li>存档三</li>
+      <button id="back">返回</button>
+    </ol>
+    <script type="text/javascript">
+      $(function()
+      {
+        $("#back").click(function()
+        {
+          changeScene("Title.html")
+        })
+        for(var i=0;i<2;i++)
+        {
+          $("button").css("background","orange")
+          $("button").css("border","solid")
+          $("button").css("width","100px")
+          $("button").css("height","50px")
+        }
+      })
+    </script>
+  </body>
+</html>
