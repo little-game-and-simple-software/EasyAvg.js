@@ -1,9 +1,5 @@
 // NOTE: 核心类
 // TODO: 分辨率缩放？
-function Easy_init()
-{
-   console.log("初始化")
-}
 function EasyAvg()
 {
 //  全局计数器，和dialog计数器同步更新
@@ -30,15 +26,7 @@ function EasyAvg()
         img.css("position","absolute")
 
       }
-   this.init_bgm= function(src,auto_play)
-   {
-       //创建bgm
-       var tmp_bgm= $("<audio></audio>")
-       tmp_bgm.attr('src',"running in the rain (feat. Sashenka).mp3")
-       tmp_bgm.attr("controls",true)
-       sceen_objs.push(tmp_bgm)
-      return tmp_bgm
-       }
+
        // NOTE: 修改图片大小
        this.scale_img=function(img,scale)
        {
@@ -54,13 +42,9 @@ function EasyAvg()
       var img=$("<img>")
       img.attr("src",src)
       img.attr("alt",alt)
-      img.changeImgAt=function(index,img)
-      {
-        
-      }
-           return img
-           // NOTE:返回图片对象
-           // NOTE: 创建npc
+      return img
+      // NOTE:返回图片对象
+      // NOTE: 创建npc
     this.create_npc(img)
     {
       $(img).css()
@@ -69,6 +53,9 @@ function EasyAvg()
 //创建avg背景对话框
 this.create_Dialog=function(color)
 {
+  var tmp_node
+  var tmp_change_char_img
+  var tmp_change_char_index
   var text_reach_end=false
   var finalAction
   var content=[]
@@ -112,6 +99,11 @@ this.create_Dialog=function(color)
        console.warn("执行用户自定义代码");
        finalAction()
      }
+     //改变人物
+     if(clicks==tmp_change_char_index)
+     {
+       tmp_node.attr("src",tmp_change_char_img)
+     }
      if(debugMode)
      {
        console.log("点击次数"+clicks);
@@ -143,6 +135,13 @@ this.create_Dialog=function(color)
    dialog.setFinishAction=function(func)
    {
      finalAction=func
+   }
+   // NOTE: 改变人物
+   dialog.changeImgAt=function(index,node,newImg)
+   {
+     tmp_change_char_index=index
+     tmp_node=node
+     tmp_change_char_img=newImg
    }
    return dialog
 }
@@ -204,6 +203,5 @@ this.create_btn=function (text,id)
    console.log('id->'+btn.attr("id"));
    return btn
 }
-
 }
 //测试代码
