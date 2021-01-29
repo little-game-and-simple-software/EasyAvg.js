@@ -1,10 +1,6 @@
 $(function()
 {
   var Engine=new EasyAvg()
-  //Engine.showBgm()
-  /*Engine.hideBgm()*/
-  //Engine.changeBgm("bgm/i71004_fresh.ogg")
-
   function initBg()
   {
     var bg=$("#bg")
@@ -24,7 +20,7 @@ $(function()
     $("#newGame").click(function()
     {
       alert("新游戏")
-      changeScene("../index.html")
+      changeScene("Scene/Game.html")
     })
     $("#loadGame").click(function()
     {
@@ -39,13 +35,6 @@ $(function()
     {
       alert("感谢您走进Noesis的世界 \n 这款游戏是由我们的同好会--classic_chocolat所制作")
     })
-    /*for(var i=0;i<5;i++)
-    {
-      $("button").css("background","orange")
-      $("button").css("border","solid")
-      $("button").css("width","100px")
-      $("button").css("height","50px")
-    }*/
 
   }
   initBg()

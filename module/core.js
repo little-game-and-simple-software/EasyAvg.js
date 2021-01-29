@@ -25,7 +25,7 @@ function EasyAvg()
         $("body").append(img)
         img.css("z-index","-2")
         img.css("position","absolute")
-
+        img.css("margin-left","200px")
       }
 
        // NOTE: 修改图片大小
@@ -70,14 +70,27 @@ this.create_Dialog=function(color)
    var clicks=0
    var dialog=$("<p></p>")
    // NOTE: 对于每一个Dialog的内容的数组 初始化
-   //dialog.content=[]
    // NOTE: 设置内容 string array
    dialog.setContent=function(array)
    {
      content=array
      console.log("#content")
-     console.log(content);
+     console.log(content)
+     // WARNING: 存在bug
+     // NOTE: 判断是否存在cookie 跳转保存页面后，自动恢复进度
+     var runTimeIndex=$.cookie("runTimeIndex",{path:'/'})
+  /*   if(runTimeIndex)
+     {
+       console.warn("#存在cookie，使用临时值")
+       console.warn("当前cookie值")
+       console.log(runTimeIndex);
+       dialog.text(content[runTimeIndex])
+     }
+     else{
+       console.warn("#不存在零食进度，使用Logic.js定义的值");
      dialog.text(content[0])
+   }*/
+    dialog.text(content[0])
     // console.log("对话框"+dialog.content);
    }
    dialog.css("background","orange")
@@ -94,7 +107,7 @@ this.create_Dialog=function(color)
    dialog.click(function()
    {
      clicks+=1
-     Global_clicks=clicks
+  //   Global_clicks=clicks
      dialog.text(content[clicks])
      if(clicks>content.length&&finalAction==null)
      {
@@ -181,6 +194,11 @@ this.create_Dialog=function(color)
    dialog.clearActions=function()
    {
      to_do_Actions=[]
+   }
+   //获得运行时，index，跳转存档页面会丢失数据，用于暂存
+   dialog.getRuntimeIndex=function()
+   {
+     return clicks
    }
 
    //用户自定义Action 在指定的索引执行自定义代码

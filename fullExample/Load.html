@@ -8,7 +8,8 @@
     <script src="../core.js"></script>
     <script src="../FileSystem.js"></script>
     <script src="../bgm.js"></script>
-    <script src="../changeScene.js"></script>
+    <script src="../module/changeScene.js"></script>
+    <link rel="stylesheet" href="css/button.css">
   </head>
   <body>
     <img src="img/mini_menu_save.jpg">
@@ -23,15 +24,8 @@
       {
         $("#back").click(function()
         {
-          changeScene("Title.html")
+          changeScene("index.html")
         })
-        for(var i=0;i<2;i++)
-        {
-          $("button").css("background","orange")
-          $("button").css("border","solid")
-          $("button").css("width","100px")
-          $("button").css("height","50px")
-        }
       })
     </script>
   </body>
