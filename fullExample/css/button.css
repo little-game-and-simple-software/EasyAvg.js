@@ -1,7 +1,11 @@
-#btn
+button
 {
   background: orange;
   border: solid;
-  width: "100px";
-  height: "50px";
+  width: 100px;
+  height: 50px;
+}
+button:hover
+{
+  background-color: rgba(0,0,0,0.5)
 }

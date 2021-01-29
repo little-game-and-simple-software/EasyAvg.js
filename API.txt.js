@@ -46,3 +46,14 @@ var action=function MyFinishAction()
 }
 
 dialog.setFinishAction(action)
+//根据索引改变bgm
+dialog.changeBgmAt(index,src)
+NOTE Engine ->core.js内
+// WARNING: 以下代码只在你在html里写了
+//<audio id="bgm"  controls autoplay="true" loop="true"></audio>
+//的时候生效
+var Engine=new EasyAvg()
+//是否显示audio控件 默认为不显示 bgm.css
+Engine.showBgm()
+Engine.hideBgm()
+Engine.changeBgm(src) //改变bgm

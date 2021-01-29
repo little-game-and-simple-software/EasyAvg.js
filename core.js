@@ -4,7 +4,8 @@ function EasyAvg()
 {
 //  全局计数器，和dialog计数器同步更新
   var Global_clicks=0
-    // NOTE: 初始化计数器
+  //技术信息
+  $("body").append("<h6>Powered By <a traget='_blankhi' href='https://github.com/little-game-and-simple-software/EasyAvgFrameWork'>EasyAvgFramework</a></h6>")
     //this.clicks=0
     var sceen_objs=[123456]
     //获得场景树
@@ -53,8 +54,14 @@ function EasyAvg()
 //创建avg背景对话框
 this.create_Dialog=function(color)
 {
+  //改变人物，改变bgm 改变背景
+  var tmp_actions=["changeImg","changeBgm","changeBg"]
+  //事件队列
+  var to_do_Actions=[]
+  var tmp_action=""
   var tmp_node
   var tmp_change_char_img
+  var tmp_change_bgm
   var tmp_change_char_index
   var text_reach_end=false
   var finalAction
@@ -99,10 +106,22 @@ this.create_Dialog=function(color)
        console.warn("执行用户自定义代码");
        finalAction()
      }
-     //改变人物
+     //当计数器和用户传入index一致时
      if(clicks==tmp_change_char_index)
      {
-       tmp_node.attr("src",tmp_change_char_img)
+       // NOTE: 遍历事件队列，并执行对于的操作
+      for(var i=0;i<to_do_Actions.length;i++)
+      {
+        var currentTask=to_do_Actions[i]
+        if(currentTask=="changeImg")
+        {
+          tmp_node.attr("src",tmp_change_char_img)
+        }
+        if(currentTask=="changeBgm")
+        {
+          $("#bgm").attr("src",tmp_change_bgm)
+        }
+      }
      }
      if(debugMode)
      {
@@ -142,42 +161,37 @@ this.create_Dialog=function(color)
      tmp_change_char_index=index
      tmp_node=node
      tmp_change_char_img=newImg
+     tmp_action="changeImg"
+     to_do_Actions.push(tmp_action)
+     console.warn("##调试");
+     console.log("事件队列")
+     console.log(to_do_Actions)
+   }
+   dialog.changeBgmAt=function(index,newSrc)
+   {
+      tmp_change_char_index=index
+      tmp_change_bgm=newSrc
+      tmp_action="changeBgm"
+      to_do_Actions.push(tmp_action)
+      console.warn("##调试");
+      console.log("事件队列");
+      console.log(to_do_Actions)
+   }
+   // NOTE: 清除事件队列
+   dialog.clearActions=function()
+   {
+     to_do_Actions=[]
+   }
+
+   //用户自定义Action 在指定的索引执行自定义代码
+   dialog.setCustomActionAt=function(index,func)
+   {
+
    }
    return dialog
 }
-//存档读档 模式 值 存档类型 本地（cookie或者文件）还是网络（数据库）
-this.save=function (mode,key,value,save_to_where)
-    {
-    if(mode=="cookie")
-    {
-
-      }
-        if(mode=="local")
-        {
-        //  $.cookie('key','value',{'其他参数'})
-        }
-        //网络
-        if(mode=="internet")
-        {
-            //post参数 小沙盒账号 小沙盒密码 存档 php
-            }
-}
-this.load=function ()
-    {
-     if(mode=="cookie")
-    {
-        }
-
-        if(mode=="local")
-        {
-        }
-        //网络
-        if(mode=="internet")
-        {
-            //post参数 小沙盒账号 小沙盒密码 存档 php
-            }
-}
-this.create_btn=function (text,id)
+// BUG: 有问题的代码
+/*this.create_btn=function (text,id)
   {
     var btn=$("<button></button")
     btn.getId=function()
@@ -202,6 +216,18 @@ this.create_btn=function (text,id)
    console.warn('以下id从引擎打印');
    console.log('id->'+btn.attr("id"));
    return btn
+}*/
+this.showBgm=function()
+{
+  $("#bgm").css("display","block")
+}
+this.hideBgm=function()
+{
+  $("#bgm").hide()
+}
+this.changeBgm=function(src)
+{
+  $("#bgm").attr("src",src)
 }
 }
 //测试代码

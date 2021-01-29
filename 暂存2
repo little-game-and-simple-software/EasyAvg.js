@@ -1,0 +1,9 @@
+if(tmp_action=="changeImg")
+{
+  tmp_node.attr("src",tmp_change_char_img)
+}
+if(tmp_action=="changeBgm")
+{
+/*   $("#bgm").attr("src",tmp_change_bgm)
+  $("#bgm")[0].play()*/
+}
