@@ -5,7 +5,7 @@
 运行例子
 
 <img src="example.png" alt="例子">
-
+<img src="https://s3.ax1x.com/2021/01/29/yiA4pt.png" alt="图床">
 
 1. core.js是它的核心 只有7kb大小
 2. 每个功能分模块使用 你可以在module文件夹下面看见不同的模块
