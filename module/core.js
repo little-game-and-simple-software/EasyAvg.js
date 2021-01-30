@@ -5,7 +5,7 @@ function EasyAvg()
 //  全局计数器，和dialog计数器同步更新
   //var Global_clicks=0
   //技术信息
-  $("body").append("<h6>Powered By <a traget='_blank' href='https://github.com/little-game-and-simple-software/EasyAvgFrameWork'>EasyAvgFramework</a></h6>")
+  $("body").append("<h6>Powered By <a target='_blank' href='https://github.com/little-game-and-simple-software/EasyAvgFrameWork'>EasyAvgFramework</a></h6>")
     //this.clicks=0
     var sceen_objs=[123456]
     //获得场景树
