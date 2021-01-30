@@ -25,7 +25,7 @@ $(function()
     $("#loadGame").click(function()
     {
       alert("加载游戏")
-      changeScene("Load.html")
+      changeScene("save.html")
     })
     $("#dev").click(function()
     {

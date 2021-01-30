@@ -16,15 +16,40 @@
     <link rel="stylesheet" href="css/bgm.css">
   </head>
   <body>
-    <audio src="bgm/free0701.ogg" controls="true" autoplay="true">你的浏览器不支持audio，快点换新的浏览器吧 </audio>
     <!-- NOTE: 现在存档和读档功能合并在一个页面了 -->
-    <img src="img/mini_menu_save.jpg">
-    <ol>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ol>
+    <audio src="bgm/i71004_fresh.ogg" controls="true" autoplay="true">你的浏览器不支持audio，快点换新的浏览器吧 </audio>
     <h2>读档</h2>
+    <ol id="loadList">
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+    <li><img width="5%">No Data</li>
+
+    </ol>
+    <h2>存档</h2>
+    <img src="img/mini_menu_save.jpg">
+    <ol id="saveList">
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+  <li><img width="5%">No Data</li>
+</ol>
+    <h2>技术问题，读档需要手动输入要读取存档的序号</h2>
+    <input id="loadId" type="text" value="" placeholder="请输入要读取的存档的序号">
+    <button id="loadGame">读档</button>
+    <button id="reset">重置localStorage</button>
     <button id="back">返回</button>
   </body>
 </html>
