@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>内置存档界面</title>
+    <title>内置存档和读档界面</title>
     <link rel="stylesheet" href="css/save.css">
     <link rel="stylesheet" href="css/button.css">
     <!--框架运行强制依赖js插件-->
@@ -13,14 +13,18 @@
     <script src="../module/changeScene.js"></script>
     <script src="../module/FileSystem.js"></script>
     <script src="SaveLogic.js"></script>
+    <link rel="stylesheet" href="css/bgm.css">
   </head>
   <body>
+    <audio src="bgm/free0701.ogg" controls="true" autoplay="true">你的浏览器不支持audio，快点换新的浏览器吧 </audio>
+    <!-- NOTE: 现在存档和读档功能合并在一个页面了 -->
     <img src="img/mini_menu_save.jpg">
     <ol>
       <li></li>
       <li></li>
       <li></li>
     </ol>
+    <h2>读档</h2>
     <button id="back">返回</button>
   </body>
 </html>

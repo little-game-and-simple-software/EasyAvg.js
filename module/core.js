@@ -3,7 +3,7 @@
 function EasyAvg()
 {
 //  全局计数器，和dialog计数器同步更新
-  var Global_clicks=0
+  //var Global_clicks=0
   //技术信息
   $("body").append("<h6>Powered By <a traget='_blankhi' href='https://github.com/little-game-and-simple-software/EasyAvgFrameWork'>EasyAvgFramework</a></h6>")
     //this.clicks=0
@@ -43,13 +43,8 @@ function EasyAvg()
       var img=$("<img>")
       img.attr("src",src)
       img.attr("alt",alt)
-      return img
       // NOTE:返回图片对象
-      // NOTE: 创建npc
-    this.create_npc(img)
-    {
-      $(img).css()
-    }
+      return img
 }
 //创建avg背景对话框
 this.create_Dialog=function(color)
@@ -78,19 +73,25 @@ this.create_Dialog=function(color)
      console.log(content)
      // WARNING: 存在bug
      // NOTE: 判断是否存在cookie 跳转保存页面后，自动恢复进度
-     var runTimeIndex=$.cookie("runTimeIndex",{path:'/'})
-  /*   if(runTimeIndex)
+     var runTimeIndex=$.cookie("runTimeIndex")
+    if(runTimeIndex)
      {
        console.warn("#存在cookie，使用临时值")
+       alert("#自动恢复进度！")
        console.warn("当前cookie值")
        console.log(runTimeIndex);
+       //由于cookie取出来是字符串，所以必须进行变量类型转换
+       clicks=Number(runTimeIndex)
+       //alert("clicks类型"+typeof(clicks))
        dialog.text(content[runTimeIndex])
+       console.warn("#自动恢复后的click值")
+       console.log(clicks);
      }
      else{
        console.warn("#不存在零食进度，使用Logic.js定义的值");
      dialog.text(content[0])
-   }*/
-    dialog.text(content[0])
+    }
+    //dialog.text(content[0])
     // console.log("对话框"+dialog.content);
    }
    dialog.css("background","orange")
@@ -111,7 +112,7 @@ this.create_Dialog=function(color)
      dialog.text(content[clicks])
      if(clicks>content.length&&finalAction==null)
      {
-       console.warn("错误，后面没有句子了,你可以设置播放结束要执行的代码");
+      console.warn("错误，后面没有句子了,你可以设置播放结束要执行的代码");
        text_reach_end=true
      }
      if(clicks>content.length&&finalAction!=null)
@@ -138,16 +139,18 @@ this.create_Dialog=function(color)
      }
      if(debugMode)
      {
-       console.log("点击次数"+clicks);
+       console.warn("#点击次数")
+       console.log(clicks);
      }
      //alert("点击了对话框")
    })
    // NOTE: 清除计数器
    dialog.clearClicks=function()
    {
-     console.log("计数器清空")
+     console.warn("#计数器清空")
      clicks=0
-     console.log("计数器次数."+clicks)
+     console.warn("#计数器次数")
+     console.log(clicks)
    }
    // NOTE: 是否显示调试信息
    dialog.setDebugLog=function(value)
@@ -206,6 +209,7 @@ this.create_Dialog=function(color)
    {
 
    }
+
    return dialog
 }
 // BUG: 有问题的代码

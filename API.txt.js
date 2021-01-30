@@ -8,6 +8,16 @@ EasyAvg.scale_img 修改图片大小 参数img scale
 EasyAvg.create_BackroundImg创建背景图片 参数img对象
 
 文件系统API cookie fileSystem NOTE没有开发
+FileSystem类
+Array FileSystem.load_Plot_Text(url)
+参数URL是文本所在的地址 这里必须在Http服务器环境下面才能运行
+返回一个数据变量，使用
+Dialog.setContent(array[0])来设置文本剧情
+至于为什么必须是array[0]的原因
+在源码chapterTest/test.js 和module/FileSystem.js可以看见原因 
+
+
+
 使用jQuery cookie插件保存进度
 EasyAvg.save(mode,value) 参数 mode使用的存档api value值
 
@@ -37,8 +47,12 @@ setFinishAction(function) //没有句子可以播放时，执行的代码
 var Engine=new EasyAvg()
 var dialog=Engine.create_Dialog()
 var text=['这是一段测试对话，你因为挪动了时间，导致了不可预知的问题！','第二段','第三段']
+Dialog类
 dialog.setContent(text)
 dialog.setDebugLog(true)
+
+
+
 // NOTE: 后面这段代码是设置没有句子可以播放时，执行的代码
 var action=function MyFinishAction()
 {

@@ -14,11 +14,12 @@ $(function()
     })
     $("#loadGame").click(function()
     {
-      changeScene("../Load.html")
+      changeScene("../save.html")
+
     })
   }
   initUI()
-
+  /*逻辑代码*/
  var Engine=new EasyAvg()
  // NOTE: 需要先创建背景
  var bg=Engine.create_img("../img/bg.jpg","背景")
@@ -35,8 +36,11 @@ koyomi.click(function()
   $("#bgm")[0].play()
 })
  var dialog=Engine.create_Dialog()
- var text=['喂！？一爬起来就趴下可不成啊','今天第一节课是小考，所以昨天不是说好了要教我功课的吗','说好的了吧',"真是的，再不快点起来我会很困扰的啊"]
-dialog.setContent(text)
+// NOTE: 旧方法
+// var text=['喂！？一爬起来就趴下可不成啊','今天第一节课是小考，所以昨天不是说好了要教我功课的吗','说好的了吧',"真是的，再不快点起来我会很困扰的啊"]
+// NOTE: 从文本文件读取剧情
+var chapter1=file.load_Plot_Text("../chapter/1.txt")
+dialog.setContent(chapter1[0])
 dialog.setDebugLog(true)
 //定义人物图片变化，定义bgm变化
 dialog.changeImgAt(2,koyomi,"../img/k18.png")
@@ -47,25 +51,41 @@ var action=function MyFinishAction()
   alert("结束")
   changeScene("../index.html")
 }
-dialog.setFinishAction(action)
+//dialog.setFinishAction(action)
 Engine.create_BackroundImg(bg)
- $("body").append(bg)
+//添加ui
+$("body").append(bg)
 $("body").append(koyomi)
 $("body").append(dialog)
 // NOTE: 绑定按钮code 存档
 function bindingButtonAction(dialog)
 {
-     $("#saveGame").click(function()
+    $("#clearCookie").click(function()
+    {
+      $.removeCookie('runTimeIndex',{path:'/'})
+    })
+    $("#clearClicks").click(function()
+    {
+      console.clear()
+      console.warn("#清空计数器");
+      dialog.clearClicks()
+    })
+    $("#reload").click(function()
+    {
+      location.reload()
+    })
+    $("#saveGame").click(function()
      {
        console.warn("##存档！");
        //在跳转存档页面之前，先暂存游戏运行状态执行到哪一个句子的index
        var index=dialog.getRuntimeIndex()
        console.warn("#运行状态"+index);
-       $.cookie('runTimeIndex',index,{path:'/'})
+       $.cookie('runTimeIndex',index,{path:'/',secure:true})
        //localStorage.setItem("test","test1ad3s1")
        //file.save("runTimeIndex",index)
        changeScene("../save.html")
      })
    }
   bindingButtonAction(dialog)
+  //从文本文件读取剧情
 })

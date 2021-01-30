@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <!--自动刷新-->
+    <!--<meta http-equiv="refresh" content="5">-->
     <meta charset="utf-8">
-    <title>测试页面</title>
+    <title>单元测试页面</title>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="../core.js"></script>
-    <script src="../FileSystem.js"></script>
+    <script src="../module/core.js"></script>
+    <script src="../module/FileSystem.js"></script>
+    <script src="FileSystemTest.js"></script>
+    <script src="test.js"></script>
   </head>
   <body>
     <h1 align="center">测试页面</h1>
     <p>需要打开浏览器开发者窗口</p>
     <button id="fileTest">文件系统测试</button>
-    <button id=""></button>
-    <script>
-    $(function()
-    {
-      $("#fileTest").click(function()
-      {
-        // NOTE: 初始化
-        var fileSystem=new FileSystem()
-        console.log("##自动化测试开始##")
-        console.log("存档和读档正确代码测试")
-        fileSystem.save("hello","hello")
-        var data=fileSystem.load("hello")
-        console.log(data)
-        console.log("##错误代码测试##")
-        fileSystem.save("hello","hello")
-        var data=fileSystem.load("hell")
-        console.log(data)
-      })
-      console.log("jquery检测");
-    })
-    </script>
+    <button id="cookieTest">cookie测试</button>
+
   </body>
 </html>
