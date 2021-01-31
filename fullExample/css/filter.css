@@ -1,0 +1,23 @@
+/*滤镜css 最终使用js来调用动态输入参数*/
+#bg
+{
+  /*灰色*/
+  /* Chrome, Safari, Opera */
+  /* -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); */
+  /*模糊默认20px */
+   /* -webkit-filter:blur(20px); */
+  /* filter:blur(20px) ; */
+  /*变亮 可以用于仿hdr效果*/
+  /* -webkit-filter: brightness(200%);
+    filter: brightness(200%); */
+    /*对比度*/
+  /* -webkit-filter: contrast(200%);
+    filter: contrast(200%); */
+    /*阴影*/
+    /* -webkit-filter: drop-shadow(8px 8px 10px red);
+    filter: drop-shadow(8px 8px 10px red);  */
+    /*反转颜色*/
+      /* -webkit-filter: invert(100%);  */
+  /*  filter: invert(100%); */
+}

@@ -25,7 +25,9 @@ $(function()
  var bg=Engine.create_img("../img/bg.jpg","背景")
  var koyomi=Engine.create_img("../img/char.png","小夜美")
  console.warn("#设置bgm音量");
- $("#bgm")[0].volume=0.5
+ Engine.showBgm()
+ Engine.setBgmVolume(0.5)
+ //$("#bgm")[0].volume=0.5
 //改变人物动作 参数是第几个段落 index从0开始
 //var koyomi_2=Engine.create_img("k18.png","k")
 koyomi.css("margin-left","500px")
@@ -42,15 +44,17 @@ koyomi.click(function()
 var chapter1=file.load_Plot_Text("../chapter/1.txt")
 dialog.setContent(chapter1[0])
 dialog.setDebugLog(true)
-//定义人物图片变化，定义bgm变化
-dialog.changeImgAt(2,koyomi,"../img/k18.png")
-dialog.changeBgmAt(2,"../bgm/i72008_momoiro_cherry.ogg")
-var action=function MyFinishAction()
+//淡入淡出
+var b=function()
 {
-  console.warn("#游戏结束#，来自逻辑层代码");
-  alert("结束")
-  changeScene("../index.html")
+console.log("用户函数调用 淡入测试！")
+ //koyomi.fadeIn()
 }
+//定义人物图片变化，定义bgm变化
+// BUG: 这个地方有小bug 顺序问题，
+dialog.setCustomActionAt(0,b)
+ dialog.changeImgAt(3,koyomi,"../img/k18.png")
+ dialog.changeBgmAt(3,"../bgm/i72008_momoiro_cherry.ogg")
 //dialog.setFinishAction(action)
 Engine.create_BackroundImg(bg)
 //添加ui

@@ -14,7 +14,7 @@ Array FileSystem.load_Plot_Text(url)
 返回一个数据变量，使用
 Dialog.setContent(array[0])来设置文本剧情
 至于为什么必须是array[0]的原因
-在源码chapterTest/test.js 和module/FileSystem.js可以看见原因 
+在源码chapterTest/test.js 和module/FileSystem.js可以看见原因
 
 
 
@@ -71,3 +71,4 @@ var Engine=new EasyAvg()
 Engine.showBgm()
 Engine.hideBgm()
 Engine.changeBgm(src) //改变bgm
+Engine.setBgmVolume(int) //设置bgm音量 必须在html中定义一个id为bgm的audio标签 否则无效

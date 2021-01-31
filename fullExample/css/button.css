@@ -4,6 +4,8 @@ button
   border: solid;
   width: 100px;
   height: 50px;
+  /*添加默认圆角*/
+  border-radius: 10px;
 }
 button:hover
 {

@@ -1,0 +1,23 @@
+/*过渡效果*/
+/*缩放效果*/
+/*缩放效果用于模拟摄像机聚焦方法图片一部分的效果*/
+/* #bg
+{
+  width:800px;
+  transition:width 2s;
+}
+#bg:hover
+{
+  width:90%;
+} */
+/*3d变换*/
+#bg
+{
+  /* transition:transform 2.5s; */
+}
+#bg:hover
+{
+  /* transform: rotateY(360deg); */
+  /* transform: rotateX(180deg);
+  transform: rotateZ(180deg); */
+}

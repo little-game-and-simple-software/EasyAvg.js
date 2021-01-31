@@ -40,6 +40,13 @@ $(function()
   initBg()
   initBgm()
   initUI()
+  /*绑定按钮音效*/
+  $("button").click(function()
+  {
+  //  alert("#绑定！")
+    $("#btn_sound")[0].load()
+    $("#btn_sound")[0].play()
+  })
   $("#exit").click(function()
   {
     alert("感谢游玩此游戏！")

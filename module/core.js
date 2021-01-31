@@ -4,7 +4,18 @@ function EasyAvg()
 {
 //  全局计数器，和dialog计数器同步更新
   //var Global_clicks=0
-  //技术信息
+  /*设置bgm音量，全局 必须是ID为bgm的元素 值0-1之间的float*/
+  this.setBgmVolume=function(volume)
+  {
+    alert("设置音量")
+    $("#bgm")[0].volume=volume
+  }
+  /*绑定按钮音效 src*/
+  this.setButtonSound=function(inSrc)
+  {
+    
+    //$("#btn_sound").attr("src",inSrc)
+  }
   $("body").append("<h6>Powered By <a target='_blank' href='https://github.com/little-game-and-simple-software/EasyAvgFrameWork'>EasyAvgFramework</a></h6>")
     //this.clicks=0
     var sceen_objs=[123456]
@@ -13,12 +24,7 @@ function EasyAvg()
     {
     return sceen_objs
     }
-      //初始化
-      this.init=function ()
-      {
-      this.init_bgm()
-      this.create_TextBackground()
-      }
+
       // NOTE: 创建背景图片
       this.create_BackroundImg=function(img)
       {
@@ -49,21 +55,32 @@ function EasyAvg()
 //创建avg背景对话框
 this.create_Dialog=function(color)
 {
-  //改变人物，改变bgm 改变背景
-  var tmp_actions=["changeImg","changeBgm","changeBg"]
+  /*临时action，将会被push入事件队列*/
+  var tmp_action=""
+  /*改变人物，改变bgm 改变背景*/
+  var tmp_actions=["changeImg","changeBgm","changeBg","custom"]
   //事件队列
   var to_do_Actions=[]
-  var tmp_action=""
+  /*传入对象*/
   var tmp_node
+  /*临时变量，用于更换新的图像*/
   var tmp_change_char_img
+  /*临时变量，用于更换bgm*/
   var tmp_change_bgm
-  var tmp_change_char_index
+  /*绑定index，就是在哪一个index执行对应的代码或自定义代码 int类型*/
+  var tmp_doActionAt
+  //var tmp_change_char_index
+/*是否播放到结尾*/
   var text_reach_end=false
   var finalAction
-  var content=[]
+/*内部内容数组*/
+   var content=[]
    var debugMode=true
+/*内部点击次数*/
    var clicks=0
    var dialog=$("<p></p>")
+   /*自定义函数*/
+   var customAction
    // NOTE: 对于每一个Dialog的内容的数组 初始化
    // NOTE: 设置内容 string array
    dialog.setContent=function(array)
@@ -121,8 +138,10 @@ this.create_Dialog=function(color)
        finalAction()
      }
      //当计数器和用户传入index一致时
-     if(clicks==tmp_change_char_index)
+     if(clicks==tmp_doActionAt)
      {
+       console.log("事件队列")
+       console.log(to_do_Actions)
        // NOTE: 遍历事件队列，并执行对于的操作
       for(var i=0;i<to_do_Actions.length;i++)
       {
@@ -134,6 +153,11 @@ this.create_Dialog=function(color)
         if(currentTask=="changeBgm")
         {
           $("#bgm").attr("src",tmp_change_bgm)
+        }
+        if(currentTask=="custom")
+        {
+          customAction()
+          //alert("自定义事件")
         }
       }
      }
@@ -152,7 +176,7 @@ this.create_Dialog=function(color)
      console.warn("#计数器次数")
      console.log(clicks)
    }
-   // NOTE: 是否显示调试信息
+   /* 是否显示调试信息*/
    dialog.setDebugLog=function(value)
    {
      if(value)
@@ -174,7 +198,7 @@ this.create_Dialog=function(color)
    // NOTE: 改变人物
    dialog.changeImgAt=function(index,node,newImg)
    {
-     tmp_change_char_index=index
+     tmp_doActionAt=index
      tmp_node=node
      tmp_change_char_img=newImg
      tmp_action="changeImg"
@@ -185,7 +209,7 @@ this.create_Dialog=function(color)
    }
    dialog.changeBgmAt=function(index,newSrc)
    {
-      tmp_change_char_index=index
+      tmp_doActionAt=index
       tmp_change_bgm=newSrc
       tmp_action="changeBgm"
       to_do_Actions.push(tmp_action)
@@ -203,42 +227,19 @@ this.create_Dialog=function(color)
    {
      return clicks
    }
-
+// BUG: 下次搞
    //用户自定义Action 在指定的索引执行自定义代码
    dialog.setCustomActionAt=function(index,func)
    {
-
+     tmp_doActionAt=index
+     tmp_action="custom"
+     to_do_Actions.push(tmp_action)
+     customAction=func
    }
 
    return dialog
 }
-// BUG: 有问题的代码
-/*this.create_btn=function (text,id)
-  {
-    var btn=$("<button></button")
-    btn.getId=function()
-    {
-      return btn.attr("id")
-    }
-    btn.setId=function()
-    {
-      btn.attr("id",id)
-    }
-   //var btn=$("<button"+" "+"id="+id>"+"</button>").text(text)
-   btn.attr("id",id)
-   btn.text(text)
-   console.warn(btn);
-   // NOTE: 默认内置button样式设置
-   btn.css("background","orange")
-   btn.css("border","solid")
-   btn.css("width","100px")
-   btn.css("height","50px")
 
-   //调试
-   console.warn('以下id从引擎打印');
-   console.log('id->'+btn.attr("id"));
-   return btn
-}*/
 this.showBgm=function()
 {
   $("#bgm").css("display","block")
