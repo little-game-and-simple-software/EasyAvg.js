@@ -17,39 +17,28 @@
   </head>
   <body>
     <!-- NOTE: 现在存档和读档功能合并在一个页面了 -->
-    <audio src="bgm/i71004_fresh.ogg" controls="true" autoplay="true">你的浏览器不支持audio，快点换新的浏览器吧 </audio>
-    <h2>读档</h2>
-    <ol id="loadList">
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
-    <li><img width="5%">No Data</li>
+    <audio src="bgm/i71004_fresh.ogg" controls="true" loop="true" autoplay="true">你的浏览器不支持audio，快点换新的浏览器吧 </audio>
 
-    </ol>
-    <h2>存档</h2>
+    <h2>存档与读档</h2>
     <img src="img/mini_menu_save.jpg">
     <ol id="saveList">
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
-  <li><img width="5%">No Data</li>
+      <!-- 改用动态创建 -->
+  <li value="1"><img width="5%">No Data</li>
+  <li value="2"><img width="5%">No Data</li>
+  <li value="3"><img width="5%">No Data</li>
+  <li value="4"><img width="5%">No Data</li>
+  <li value="5"><img width="5%">No Data</li>
+  <li value="6"><img width="5%">No Data</li>
+  <li value="7"><img width="5%">No Data</li>
+  <li value="8"><img width="5%">No Data</li>
+  <li value="9"><img width="5%">No Data</li>
+  <li value="10"><img width="5%">No Data</li>
 </ol>
     <h2>技术问题，读档需要手动输入要读取存档的序号</h2>
+    <p>存档完，不能立即读档，需要刷新一下界面</p>
     <input id="loadId" type="text" value="" placeholder="请输入要读取的存档的序号">
     <button id="loadGame">读档</button>
-    <button id="reset">重置localStorage</button>
+    <button id="reset">清空所有存档</button>
     <button id="back">返回</button>
   </body>
 </html>

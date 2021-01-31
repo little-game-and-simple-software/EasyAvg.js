@@ -1,8 +1,8 @@
 //// NOTE: 游戏存档/读档封装类  API是localStorage
 function FileSystem()
 {
-  var plot_text=["A"]
-//  var plot_text=["ad","2s"]
+  var plot_text=[]
+  /*读取localStorage*/
   this.load=function(key)
   {
     var value=localStorage.getItem(key)
@@ -12,7 +12,7 @@ function FileSystem()
     }
     else
     {
-      console.warn("错误，值不存在")
+    //  console.warn("错误，值不存在")
     }
   }
   this.save=function(key,value)
@@ -20,7 +20,7 @@ function FileSystem()
     //console.log("存入了值"+value)
     localStorage.setItem(key,value);
   }
-  //读取剧情文本
+  /*读取剧情文本 url是文本文件路径*/
   this.load_Plot_Text=function(url)
   {
   // BUG: Jquery实现方式存在问题，使用localStorage作为全局变量用
@@ -42,5 +42,10 @@ function FileSystem()
     //console.log(t1);
    return Array(t1)
 
+  }
+  /*清空所欲存档*/
+  this.clearAll=function()
+  {
+    localStorage.clear()
   }
 }

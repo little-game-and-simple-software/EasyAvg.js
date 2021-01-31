@@ -40,4 +40,16 @@ $(function()
     }
     console.warn("#cookie单元测试完毕");
   })
+  $("#localStorage").click(function()
+  {
+    console.warn("loacalStorage测试");
+    //存数组
+    localStorage.setItem("a",[1,2,3,14,5])
+    var a=localStorage.getItem("a")
+    var b=Array(a)
+    console.log(typeof(a));
+    console.log("b>")
+    console.log(b);
+    console.log(typeof(b));
+  })
 })
