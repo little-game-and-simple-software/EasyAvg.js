@@ -72,3 +72,11 @@ Engine.showBgm()
 Engine.hideBgm()
 Engine.changeBgm(src) //改变bgm
 Engine.setBgmVolume(int) //设置bgm音量 必须在html中定义一个id为bgm的audio标签 否则无效
+
+新增ImageEffect类 用于设置图像效果
+//设置图像效果 图片对象 效果字符串
+ImageEffect.setImageEffect=function(imgObj,effect)
+//清除指定图像的全部图像效果
+ImageEffect.clearAllEffect=function(imgObj)
+/*设置图像效果的值*/ //val为字符串 可以是10%写法也可以是10px写法 具体根据效果自己测试
+ImageEffect.setImageEffectValue=function(imgObj,val)

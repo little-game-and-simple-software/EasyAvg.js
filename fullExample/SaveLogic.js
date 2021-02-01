@@ -40,13 +40,13 @@ $(function() {
     }
   }
   init()
-  /*存档 每个li元素*/
-  $("#saveList li").click(function() {
-    //先询问是否存档
+  /*存档功能*/
+  $("#saveList li").click(function()
+  {
     var saveState = confirm("存档吗?")
   //  console.log($(this));
     if (saveState) {
-            var a = $("<img width='5%' src='img/k18.png' alt='存档截屏快照'>" + "<span>" + today + "</span>")
+      var a = $("<img width='5%' src='img/k18.png' alt='存档截屏快照'>" + "<span>" + today + "</span>")
       $(this).html(a)
       id = $(this).attr("value")
       //获得点击index
@@ -54,7 +54,9 @@ $(function() {
       //var toSaveData=$.cookie("runTimeIndex")
       console.log("新存档！");
       //测试用
-      var toSaveData = 1
+      // var toSaveData = 1
+      var toSaveData=$.cookie("runTimeIndex")
+      alert("cookie传入>"+toSaveData)
       var dataObject = {
         "data": toSaveData,
         "date": today
@@ -62,6 +64,8 @@ $(function() {
       var save_data_object = JSON.stringify(dataObject)
       alert(save_data_object)
       fileManager.save("saveData" + id, save_data_object)
+      // 自动刷新页面
+      location.reload()
       //  console.log("cookieIndex#>"+toSaveData)
     }
   })

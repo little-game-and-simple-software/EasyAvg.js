@@ -1,0 +1,12 @@
+.historyView
+{
+  border: solid;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.2s;
+  margin-top:0px;
+}
+.historyView:hover
+{
+  background-color: gray;
+}

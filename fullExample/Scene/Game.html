@@ -10,15 +10,15 @@
         <script src="../../module/core.js"></script>
         <script src="../../module/FileSystem.js"></script>
         <script src="../../module/changeScene.js"></script>
+        <script src="../../module/ImageEffect.js"></script>
         <script src="Logic.js"></script>
         <!--内置button样式，如果不喜欢，可以自己建立css样式-->
         <link rel="stylesheet" href="../css/button.css">
         <link rel="stylesheet" href="../css/bgm.css">
-        <!--文本效果-->
-        <link rel="stylesheet" href="../css/textEffect.css">
+        <link rel="stylesheet" href="../css/Game.css">
     </head>
     <body>
-    
+
       <audio  id="bgm" src="../bgm/i71004_fresh.ogg" controls="true" autoplay="false" loop="true"></audio>
         <h1> EasyAvgFramework </h1>
         <button id="start">开始</button>
@@ -28,6 +28,14 @@
         <button id="clearCookie">清除自动暂存cookie</button>
         <button id="clearClicks">清空计数器</button>
         <button id="reload">刷新页面</button>
+        <button id="history">历史记录</button>
+        <button id="hideDialog">隐藏对话框</button>
+        <div style="display:none">
+          <!-- <button id="closeHistory">关闭</butotn> -->
+        <p class="historyView">历史记录 可能不好看，以后用开源库实现效果</p>
+         <p class="historyView">【小夜美】测试1</p>
+        <!-- <p class="historyView">【小夜美】测试2</p> -->
+      </div>
         <h6> Copyright © 2020 小沙盒工作室&128hh. </h6>
     </body>
 </html>

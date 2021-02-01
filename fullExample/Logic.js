@@ -40,6 +40,12 @@ $(function()
   initBg()
   initBgm()
   initUI()
+  /*测试*/
+  /*设置效果*/
+  // var Effect=new ImageEffect()
+  // Effect.setImageEffect($("#bg"),Effect.gray)
+  // Effect.setImageEffectValue($("#bg"),"0%")
+  // Effect.clearAllEffect($("#bg"))
   /*绑定按钮音效*/
   $("button").click(function()
   {

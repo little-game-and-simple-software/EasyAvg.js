@@ -1,7 +1,20 @@
-//// NOTE: 游戏存档/读档封装类  API是localStorage
+// NOTE: 游戏存档/读档封装类  API是localStorage
+// WARNING: 注意，必须要设置finishAction行为,不然会导致内部计数器一直累加，然后存档索引数据和剧情索引对不上去，就无法显示文本了
 function FileSystem()
 {
-  var plot_text=[]
+  var debugMode=true
+  this.setDebugLog=function(bool)
+  {
+    if(bool)
+    {
+      debugMode=true
+    }
+    else
+    {
+      debugMode=false
+    }
+  }
+  // var plot_text=[]
   /*读取localStorage*/
   this.load=function(key)
   {
@@ -12,7 +25,7 @@ function FileSystem()
     }
     else
     {
-    //  console.warn("错误，值不存在")
+      if(debugMode==true){  console.warn("错误，值不存在")}
     }
   }
   this.save=function(key,value)
@@ -24,28 +37,28 @@ function FileSystem()
   this.load_Plot_Text=function(url)
   {
   // BUG: Jquery实现方式存在问题，使用localStorage作为全局变量用
-    //jquery
     $.get(url,function(data,status)
-    {
+    {// WARNING: 这里可能存在小问题，隐患，如果没能及时获取到内容，就bug了
+      console.warn("#剧情文本获取状态码>"+status);
       //对文本处理，变成数组
+      // if(status!="success"){console.warn("#错误http状态>"+status+"请查阅jquery $.get方法返回值以及http教程");}
       localStorage.setItem("tmp_chapter",data)
+      if(data==null){console.warn("#错误，没有获取到文本数据");}
       //使用中文句号判断一行，所以在文中除了句子段落末尾，别的地方不能出现句号
-      //技术不行，还得看看比人开源引擎是怎么写的
-
-      //$.cookie("tmp_chapter",data,{path:'/'})
-      //解决办法？转用cookie存储
+      //技术不行，还得看看别人开源引擎是怎么写的
     })
     var tmp=localStorage.getItem("tmp_chapter")
-    //console.log("此时,tmp的值"+tmp);
     var t1=tmp.split("。")
-    //console.warn("#字符串分割")
-    //console.log(t1);
-   return Array(t1)
+    return Array(t1)
 
   }
   /*清空所欲存档*/
   this.clearAll=function()
   {
     localStorage.clear()
+    if(debugMode)
+    {
+      console.warn("#清空了所有localStorage")
+    }
   }
 }
