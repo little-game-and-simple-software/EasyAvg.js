@@ -25,7 +25,6 @@ $(function()
       // alert("历史记录！")
       $("div").toggle()
     })
-
   }
   initUI()
   /*逻辑代码*/
@@ -33,8 +32,7 @@ $(function()
  // NOTE: 需要先创建背景
  var bg=Engine.create_img("../img/bg.jpg","背景")
  var koyomi=Engine.create_img("../img/char.png","小夜美")
- // console.warn("#设置bgm音量");
- Engine.showBgm()
+ // Engine.showBgm()
  Engine.setBgmVolume(0.5)
 
 koyomi.css("margin-left","500px")
@@ -63,24 +61,50 @@ Engine.create_BackroundImg(bg)
  })
  var effect=function()
  {
-   alert("自定义事件1 背景模糊！")
+   // alert("自定义事件1 背景模糊！")
    Effect.setImageEffect(bg,Effect.blur)
  }
  var effect2=function()
  {
-   alert("自定义事件2 人物反色！")
-   Effect.setImageEffect(koyomi,Effect.invert)
+   Effect.setImageEffect(bg,Effect.invert)
  }
- //事件 bug了
- dialog.changeBgmAt(1,"../bgm/i72008_momoiro_cherry.ogg")
- dialog.changeImgAt(2,koyomi,"../img/char.png")
- dialog.setCustomActionAt(3,effect)
- dialog.setCustomActionAt(4,effect2)
- // dialog.setCustomActionAt(5,effect3)
+ var bright=function()
+ {
+   Effect.setImageEffect(koyomi,Effect.bright)
+ }
+ var gray=function()
+ {
+   // Effect.clearAllEffect(koyomi)
+   Effect.setImageEffect(koyomi,Effect.gray)
+ }
+ var clear=function()
+ {
+   Effect.clearAllEffect(bg)
+   Effect.clearAllEffect(koyomi)
+ }
+ //事件 bug了 修好了 core.js计数器判断和执行方式推倒 重写
+  // dialog.changeBgmAt(1,"../bgm/i72008_momoiro_cherry.ogg")
+  dialog.changeImgAt(1,koyomi,"../img/k18.png")
+  dialog.changeImgAt(2,koyomi,"../img/char.png")
+  /*更换角色*/
+  // NOTE: 更换角色没有过度效果 过于突然 以后优化图像效果
+  dialog.changeImgAt(5,koyomi,"../img/c03.png")
+  dialog.setCustomActionAt(14,effect)
+  //反色
+  dialog.changeImgAt(15,koyomi,"../img/k20.png")
+  dialog.setCustomActionAt(15,effect2)
+  dialog.changeBgmAt(15,"../bgm/i71009_asia.ogg")
+  dialog.setCustomActionAt(17,bright)
+  dialog.setCustomActionAt(18,gray)
+  dialog.setCustomActionAt(19,clear)
+  /*恢复原图*/
+  dialog.changeImgAt(20,koyomi,"../img/char.png")
+  dialog.changeBgmAt(20,"../bgm/i71004_fresh.ogg")
 //添加ui
 $("body").append(bg)
 $("body").append(koyomi)
 $("body").append(dialog)
+
 // NOTE: 绑定按钮code 存档
 function bindingButtonAction(dialog)
 {

@@ -8,11 +8,13 @@
     <!-- <link rel="stylesheet" href="css/splash.css"> -->
   </head>
   <body>
+    <audio id="se" src="sound/s03.mp3"> </audio>
     <h1 align="center" style="display:none">EasyAvgFrameWork</h1>
     <script>
     $(function()
     {
-      $("h1").fadeIn(2000,function()
+      $("#se")[0].play()
+      $("h1").fadeIn(2500,function()
       {
         // alert("加载游戏主页")
         changeScene("index.html")

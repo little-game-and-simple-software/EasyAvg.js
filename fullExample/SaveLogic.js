@@ -1,5 +1,14 @@
 // NOTE: 存档读档功能初步完成，现在只做了个单个存档存储和读取的功能，之后做多个存档的存储和读取
 $(function() {
+  $("#bgm").css("display","block")
+  // $("#bgm")[0].play()
+  //滑动音效
+  $("li").mouseenter(function()
+  {
+    $("#se")[0].play()
+    // $("#se")[0].load()
+  })
+
   /*用于存文件*/
   var id
   /*存档列表*/

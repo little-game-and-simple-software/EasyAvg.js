@@ -56,6 +56,7 @@ function EasyAvg()
 //创建avg背景对话框
 this.create_Dialog=function(color)
 {
+
   /*临时action，将会被push入事件队列*/
   var tmp_action=""
   /*改变人物，改变bgm 改变背景*/
@@ -71,10 +72,13 @@ this.create_Dialog=function(color)
   /*绑定index，就是在哪一个index执行对应的代码或自定义代码 int类型*/
   /*废弃改用json对象*/
   var tmp_doActionAt
+  var todoActionIndexArray=[]
   /*把JSON对象存入数组*/
   var func
+  var functionsList=[]
   var JsonAcionObjectsList=[]
-  var toDoActionObject={"doActionAt":tmp_doActionAt,"func":func}
+  // Json对象不能存储function
+  // var toDoActionObject={"doActionAt":tmp_doActionAt,"func":func}
   //var tmp_change_char_index
 /*是否播放到结尾*/
   var text_reach_end=false
@@ -85,8 +89,6 @@ this.create_Dialog=function(color)
 /*内部点击次数*/
    var clicks=0
    var dialog=$("<p></p>")
-   /*自定义函数队列*/
-   var custom_Function_List=[]
    /*自定义函数*/
    var customAction
    // NOTE: 对于每一个Dialog的内容的数组 初始化
@@ -113,7 +115,7 @@ this.create_Dialog=function(color)
        console.log(clicks);
      }
      else{
-       console.warn("#不存在零食进度，使用Logic.js定义的值");
+       console.warn("#不存在cookie进度，使用Logic.js定义的值");
      dialog.text(content[0])
     }
     //dialog.text(content[0])
@@ -145,34 +147,20 @@ this.create_Dialog=function(color)
        console.warn("执行用户自定义代码");
        finalAction()
      }
+     // BUG: 旧方法不适用了 有bug 改新方法
+     //每次点击，进行一次遍历，查找在计数器索引是否等于传入索引
      //当计数器和用户传入index一致时
-     if(clicks==tmp_doActionAt)
+     for(var i=0;i<todoActionIndexArray.length;i++)
      {
-       console.log("事件队列")
-       console.log(to_do_Actions)
-       // NOTE: 遍历事件队列，并执行对于的操作
-      for(var i=0;i<to_do_Actions.length;i++)
-      {
-        var currentTask=to_do_Actions[i]
-        if(currentTask=="changeImg")
-        {
-          tmp_node.attr("src",tmp_change_char_img)
-        }
-        if(currentTask=="changeBgm")
-        {
-          $("#bgm").attr("src",tmp_change_bgm)
-        }
-        if(currentTask=="custom")
-        {
-          console.log("自定义函数队列");
-          console.log(custom_Function_List);
-          for(var i=0;i<custom_Function_List.length;i++)
-          {
-            var current_Function=custom_Function_List[i]
-            current_Function()
-          }
-        }
-      }
+       // alert("遍历")
+       if(clicks==todoActionIndexArray[i])
+       {
+         console.warn("#遍历");
+         console.log("#此时遍历索引>"+i);
+         var Myfunc=functionsList[i]
+         console.log(Myfunc);
+         Myfunc()
+       }
      }
      if(debugMode)
      {
@@ -208,28 +196,41 @@ this.create_Dialog=function(color)
    {
      finalAction=func
    }
-   // NOTE: 改变人物
+   // NOTE: 下面是两个内置事件
    dialog.changeImgAt=function(index,node,newImg)
    {
-     tmp_doActionAt=index
-     tmp_node=node
-     tmp_change_char_img=newImg
-     tmp_action="changeImg"
-     to_do_Actions.push(tmp_action)
-     console.warn("##调试");
-     console.log("事件队列")
-     console.log(to_do_Actions)
+    // tmp_change_char_img=
+     todoActionIndexArray.push(index)
+     console.log("要运行代码的index数组");
+     console.log(todoActionIndexArray);
+     var changeImage=function()
+     {
+       // alert("内置功能 改变图像")
+       node.attr("src",newImg)
+     }
+     functionsList.push(changeImage)
    }
    dialog.changeBgmAt=function(index,newSrc)
    {
-      tmp_doActionAt=index
-      tmp_change_bgm=newSrc
-      tmp_action="changeBgm"
-      to_do_Actions.push(tmp_action)
-      console.warn("##调试");
-      console.log("事件队列");
-      console.log(to_do_Actions)
+     todoActionIndexArray.push(index)
+     var changeBgm=function()
+     {
+       $("#bgm").attr("src",newSrc)
+       $("#bgm")[0].play()
+     }
+     console.log("要运行代码的index数组");
+     console.log(todoActionIndexArray);
+     functionsList.push(changeBgm)
    }
+   dialog.setCustomActionAt=function(index,func)
+   {
+     //压入事件Index列表
+     todoActionIndexArray.push(index)
+     console.log("要运行代码的index数组");
+     console.log(todoActionIndexArray);
+     //压入自定义函数列表
+     functionsList.push(func)
+    }
    // NOTE: 清除事件队列
    dialog.clearActions=function()
    {
@@ -240,23 +241,9 @@ this.create_Dialog=function(color)
    {
      return clicks
    }
-// BUG: 下次搞
+// BUG: 已修复，用新方法
    //用户自定义Action 在指定的索引执行自定义代码
-   dialog.setCustomActionAt=function(index,func)
-   {
-     var j=JSON.stringify({"doActionAt":index,"func":func})
-     console.log("Json>"+j);
-     JsonAcionObjectsList.push(j)
-     console.log("Json数组>")
-     console.log(JsonAcionObjectsList);
-   //
-   //   tmp_doActionAt=index
-   //   tmp_action="custom"
-   //   to_do_Actions.push(tmp_action)
-   //   // customAction=func
-   //   /*压入自定义函数队列*/
-   //   custom_Function_List.push(func)
-    }
+
    return dialog
 }
 

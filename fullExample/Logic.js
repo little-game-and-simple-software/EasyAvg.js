@@ -40,12 +40,6 @@ $(function()
   initBg()
   initBgm()
   initUI()
-  /*测试*/
-  /*设置效果*/
-  // var Effect=new ImageEffect()
-  // Effect.setImageEffect($("#bg"),Effect.gray)
-  // Effect.setImageEffectValue($("#bg"),"0%")
-  // Effect.clearAllEffect($("#bg"))
   /*绑定按钮音效*/
   $("button").click(function()
   {
@@ -58,5 +52,6 @@ $(function()
     alert("感谢游玩此游戏！")
     $("#bgm")[0].pause()
     $("#bgm")[0].load()
+    changeScene("splash.html")
   })
 })
