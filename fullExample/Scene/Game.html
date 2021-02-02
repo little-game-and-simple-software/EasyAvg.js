@@ -11,11 +11,12 @@
         <script src="../../module/FileSystem.js"></script>
         <script src="../../module/changeScene.js"></script>
         <script src="../../module/ImageEffect.js"></script>
+        <script src="../../module/Animate.js"></script>
         <script src="Logic.js"></script>
         <!--内置button样式，如果不喜欢，可以自己建立css样式-->
         <link rel="stylesheet" href="../css/button.css">
         <link rel="stylesheet" href="../css/bgm.css">
-        <link rel="stylesheet" href="../css/Game.css">
+        <link rel="stylesheet" href="../css/historyView.css">
     </head>
     <body>
 
@@ -30,12 +31,10 @@
         <button id="reload">刷新页面</button>
         <button id="history">历史记录</button>
         <button id="hideDialog">隐藏对话框</button>
-        <div style="display:none">
-          <!-- <button id="closeHistory">关闭</butotn> -->
-        <p class="historyView">历史记录 可能不好看，以后用开源库实现效果</p>
-         <p class="historyView">【小夜美】测试1</p>
+        <button id="clearAll">清空localStorage</button>
+        <ol id="HistoryPanel" style="display:none">
         <!-- <p class="historyView">【小夜美】测试2</p> -->
-      </div>
+      </ol>
         <h6> Copyright © 2020 小沙盒工作室&128hh. </h6>
     </body>
 </html>

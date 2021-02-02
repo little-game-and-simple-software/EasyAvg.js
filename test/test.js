@@ -1,5 +1,8 @@
 $(function()
 {
+  var Engine=new EasyAvg()
+  var img=Engine.create_img("../fullExample/img/k18.png","koyomi")
+  $("body").append(img)
   console.log("jquery检测");
   $("#fileTest").click(function()
   {
@@ -51,5 +54,22 @@ $(function()
     console.log("b>")
     console.log(b);
     console.log(typeof(b));
+  })
+  //ImageEffect
+  $("#im").click(function()
+  {
+    var Effect=new ImageEffect()
+    Effect.setImageEffect(img,Effect.blur,"20px")
+  })
+  //json存入函数测试
+  $("#json").click(function()
+  {
+    // var code_str="var a=1 \n console.log(a);"
+    // var code_func="function a(){console.log(2);} \n a()"
+    // var 匿名="console.log(3)"
+    // eval(匿名)
+    var f=function(){console.log(4)}
+    $.cookie("a",f)
+    console.log($.cookie("a"));
   })
 })

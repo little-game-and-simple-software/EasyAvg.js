@@ -22,8 +22,7 @@ $(function() {
   //初始化文件系统
   var fileManager = new FileSystem()
   function init()
-  { // NOTE: 弃用代码
-    //var a = $("<img width='5%' src='img/k18.png' alt='存档截屏快照'>" + "<span>这是已经存在的存档</span>")
+  {
   /*数据列表*/
     var list=[]
     /*遍历 获得数据*/

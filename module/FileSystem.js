@@ -2,6 +2,7 @@
 // WARNING: 注意，必须要设置finishAction行为,不然会导致内部计数器一直累加，然后存档索引数据和剧情索引对不上去，就无法显示文本了
 function FileSystem()
 {
+  var custom_split_char=""
   var debugMode=true
   this.setDebugLog=function(bool)
   {
@@ -14,7 +15,6 @@ function FileSystem()
       debugMode=false
     }
   }
-  // var plot_text=[]
   /*读取localStorage*/
   this.load=function(key)
   {
@@ -51,6 +51,11 @@ function FileSystem()
     var t1=tmp.split("。")
     return Array(t1)
 
+  }
+  /*让用户自定义剧情解析器的换号判断符号*/
+  this.set_plot_split_char=function(str)
+  {
+    custom_split_char=str
   }
   /*清空所欲存档*/
   this.clearAll=function()
