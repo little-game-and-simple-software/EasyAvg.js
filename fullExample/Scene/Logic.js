@@ -68,9 +68,11 @@ koyomi.click(function()
   koyomi.animate({right:'250px',opacity:'0.5'})
 })
 // NOTE: 从文本文件读取剧情 此步骤由剧情加载器完成，不应该人为干涉
-ChapterLoader.testLoad(ChapterLoader.txt1,ChapterLoader.func1)
-// var chapter1=file.load_Plot_Text("../chapter/1.txt")
-// dialog.setContent(chapter1)
+var dataArray=ChapterLoader.testLoad(ChapterLoader.txt1,ChapterLoader.func1)
+// console.log("#数据数组");
+// console.log(dataArray);
+//初始化剧情
+dialog.setContent(dataArray)
 dialog.setDebugLog(true)
 Engine.create_BackroundImg(bg)
  /*-------自定义函数----*/ //全部废弃

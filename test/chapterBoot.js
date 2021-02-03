@@ -1,25 +1,25 @@
 // evalTest("")
-// ChapterLoaderTest()
 // ChapterLoader.Iload("../fullExample/chapter/1.txt")
 //章节测试
 $(function()
 {
-  var 数据数组
+  var objArray=[]
   var clicks=0
   var Engine=new EasyAvg()
   var dialog=Engine.create_Dialog()
-  var ChapterLoader=new ChapterReader() //初始化
+  var PlotLoader=new TxtLoader()
+  // var ChapterLoader=new ChapterReader() //初始化
   $("body").append(dialog)
   //加载剧情的按钮 初始化加载器 应该第一个运行
   $("#chapterLoader").click(function()
   {
-    // var custom=function(){alert("这时用户定义的结束函数")}
-    // ChapterLoader.setFinishFunc(custom)
-    数据数组=ChapterLoader.testLoad(ChapterLoader.txt1,ChapterLoader.func1)
+    objArray=PlotLoader.load("../fullExample/chapter/1.txt","../fullExample/chapterScript/func1.js.txt")
     console.log("#获取到的二维数组");
-    console.log(数据数组); //加载完立刻显示句子和执行函数表的函数
-    dialog.text(数据数组[0][0])
-    eval(数据数组[1][0])
+    console.log(objArray); //加载完立刻显示句子和执行函数表的函数
+    console.log("#句子数组");
+    console.log(objArray[0][0]);
+    // dialog.text(objArray[0])
+    // eval(数据数组[1][0])
   })
   //模拟点击Dialog的按钮
   $("#clickDialog").click(function()
@@ -55,19 +55,4 @@ $(function()
     eval(数据数组[1][clicks])
     console.log("句子_"+line)
   })
-  //以前实现的，之后删除
-  function ChapterLoaderTest() //剧情加载器单元测试
-  {
-    var ChapterLoader=new ChapterReader()
-    var custom=function(){alert("这时用户定义的结束函数")}
-    ChapterLoader.setFinishFunc(custom) // NOTE: 这个方法需要在加载正式开始之前调用
-    ChapterLoader.test(ChapterLoader.txt1,ChapterLoader.func1)
-  }
-  // 执行函数测试 eval测试
-  function evalTest(code)
-  {
-    var 返回值=eval(code)
-    console.log("eval返回值:"+返回值);
-    return 返回值
-  }
 })

@@ -1,0 +1,4 @@
+alert('第一章开始')
+alert(1)
+alert(2)
+alert(3)

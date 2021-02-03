@@ -1,7 +1,11 @@
 // NOTE: 一次只能设置一个效果！
 function ImageEffect()
 {
-  console.log("#创建了图像特效模块");
+  var debug=false
+  if(debug)
+  {
+    console.log("#创建了图像特效模块");
+  }
   /*临时效果*/
   var tmp_effect=""
   /*图形效果列表*/ //invert反转颜色
@@ -43,5 +47,5 @@ function ImageEffect()
     imgObj.css("filter","none")
     console.log("#清空图像效果**--");
   }
-  
+
 }

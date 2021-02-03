@@ -3,6 +3,7 @@
 // NOTE: 大面积重写代码！！
 function EasyAvg()
 {
+
   /*框架全局变量，cookie http模式*/
   /*参数"http"和https*/
   var cookieMode=""
@@ -39,7 +40,6 @@ function EasyAvg()
         img.css("position","absolute")
         img.css("margin-left","200px")
       }
-
        // NOTE: 修改图片大小
        this.scale_img=function(img,scale)
        {
@@ -56,19 +56,19 @@ function EasyAvg()
 //创建avg背景对话框
 this.create_Dialog=function(color)
 {
+  var ChapterLoader=new ChapterReader()
   var historyText=[]/*历史文本 用于显示历史记录*/
   var clicks=0   /*内部计数*/
-  var content=[]   /*内部内容数组*/
+  var dataArray=[]   /*二维数据数组*/
   var debugMode=true /*调试模式*/
   var todoActionIndexArray=[]   /*内部计数*/
   var functionsList=[]   //要执行的函数列表
-  var text_reach_end=false /*是否播放到结尾*/
    var dialog=$("<p></p>") /*对话框*/
    var finalAction /*剧情播放到结尾执行的函数*/
    /*为对话框设置内容*/
    dialog.setContent=function(array)
    {
-     content=array
+     dataArray=array
      // NOTE: 判断是否存在cookie 跳转保存页面后，自动恢复进度
     // var runTimeIndex=$.cookie("runTimeIndex")
     // if(runTimeIndex)
@@ -100,8 +100,12 @@ this.create_Dialog=function(color)
     //    console.warn("#不存在cookie进度，使用Logic.js定义的值");
     //  dialog.text(content[0])
     // }
-    dialog.text(content)
-    console.log("对话框数据_"+content);
+    dialog.text(dataArray[0][0])
+    console.log("对话框数据")
+    console.log(dataArray[0]);
+    var tmp_li=$("<li class='historyView'>"+dataArray[0][0]+"</li>")
+    $("#HistoryPanel").append(tmp_li)
+    eval(dataArray[1][0])
    }
    dialog.css("background","orange")
    //对话框在最上面
@@ -118,38 +122,38 @@ this.create_Dialog=function(color)
    dialog.click(function()
    {
      clicks+=1
-  //   Global_clicks=clicks
-     // dialog.text("测试历史框")
-     dialog.text(content[clicks])
-     historyText.push(content[clicks]) /*历史记录*/ //下面代码同时废弃重写
-     // localStorage.setItem("historyText",historyText)
-     // var 历史文本=localStorage.getItem("historyText")
-     for(var i=0;i<todoActionIndexArray.length;i++)
+     var line=dataArray[0][clicks]
+     dialog.text(line)
+     if(line==">") //下一章
      {
-       if(clicks==todoActionIndexArray[i])
-       {
-         // console.warn("#遍历");
-         // console.log("#此时遍历索引>"+i);
-         var Myfunc=functionsList[i]
-         console.log(Myfunc);
-         Myfunc()
-       }
-
+       clicks=0 // NOTE: 进入下一章索引归零
+       dataArray=ChapterLoader.testLoad(ChapterLoader.txt2,ChapterLoader.func2)
+       dialog.text(dataArray[0][0])
      }
+     if(line.indexOf("<")==0) //结尾
+     {
+       dialog.text("") //当有<时，不显示文字，因为是指令信息，不能显示出来！
+       if(line.split("<")[1]=="end")
+       {
+         alert("默认结束方法")
+         window.open("../../fullExample/Splash.html","_self")
+       }
+       if(line.split("<")[1]=="custom_end")
+       {
+         dialog.text("")
+         alert("自定义结束方法")
+         window.open("../../fullExample/Splash.html","_self")
+       }
+     }
+     console.log("#当前句子_"+line);
+     eval(dataArray[1][clicks])
      //给历史记录添加文本
-      // var tmp_li=$("<li class='historyView'>"+content[clicks]+"</li>")
-      var tmp_li=$("<li class='historyView'>测试历史框</li>")
+      var tmp_li=$("<li class='historyView'>"+line+"</li>")
       $("#HistoryPanel").append(tmp_li)
      if(debugMode)
      {
-       console.warn("#点击次数")
-       console.log(clicks);
-       console.log("要执行的函数列表>")
-       console.log(functionsList);
-       console.log("函数索引表");
-       console.log(todoActionIndexArray);
+       console.warn("#点击次数_"+clicks)
      }
-     //alert("点击了对话框")
    })
    // NOTE: 清除计数器 把不是重要代码缩成一行
    dialog.clearClicks=function(){
@@ -165,8 +169,6 @@ this.create_Dialog=function(color)
      if(bool){console.warn("Dialog调试模式已打开")}
      else{console.warn("Dialog调试模式已关闭"); }
    }
-   // NOTE: 当没有句子可以播放时，执行 废弃
-
    // NOTE: 下面是两个内置事件 废弃，如果遇到代码问题，从backup代码恢复
    // NOTE: 清除事件队列
    dialog.clearActions=function()

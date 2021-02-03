@@ -35,11 +35,11 @@ function ChapterReader()//章节加载器
   var debug=true //debug模式
   /*剧情文本测试*/
   this.txt1="第一句话\n第二句话\n第三句话,改变了人物\n>"
-  this.txt2="第二章开始\n第二句话\n第三句话\n第四句话\n<end"
+  this.txt2="第二章开始\n第二句话\n第三句话\n<end"
   //剧情代码测试
   /*第一章对应代码*/ //弹出两次对话框，第三个是更换人物
-  this.func1="console.warn('#第一章代码1')\nconsole.warn('#第一章代码2')\n$('img').attr('src','../fullExample/img/c03.png')"
-  this.func2="console.warn('#第二章代码1')\nconsole.warn('#第二章代码2')"
+  this.func1="console.warn('#第一章代码1')\nconsole.warn('#第一章代码2')\n$('#k').attr('src','../fullExample/img/c03.png')"
+  this.func2="console.warn('#第二章代码1')\nconsole.warn('#第二章代码2')\nconsole.warn('第二章代码3')"
   this.Iload=function(path)
   {
     var 剧情分词=fileLoader.load_Plot_Text(path)
@@ -66,10 +66,10 @@ function ChapterReader()//章节加载器
       var current_result=[]//剧情数组元素在前，函数数组元素在后
       var 剧情分词=str.split("\n")
       var 函数分词=func.split("\n")
-      console.log("剧情分词");
-      console.log(剧情分词)
-      console.log("#函数分词");
-      console.log(函数分词)
+      // console.log("剧情分词");
+      // console.log(剧情分词)
+      // console.log("#函数分词");
+      // console.log(函数分词)
       // NOTE: for循环存在递归
       console.warn("#开始读取");
       current_result.push(剧情分词)
