@@ -1,6 +1,5 @@
 // NOTE: 核心类
 // TODO: 分辨率缩放？
-// NOTE: 大面积重写代码！！
 function EasyAvg()
 {
   /*框架全局变量，cookie http模式*/
@@ -70,38 +69,38 @@ this.create_Dialog=function(color)
    {
      content=array
      // NOTE: 判断是否存在cookie 跳转保存页面后，自动恢复进度
-    // var runTimeIndex=$.cookie("runTimeIndex")
-    // if(runTimeIndex)
-    //  {
-    //    console.warn("#存在cookie，使用临时值")
-    //    alert("#自动恢复进度！")
-    //    console.warn("当前cookie值")
-    //    console.log(runTimeIndex);
-    //    //变量类型转换
-    //    clicks=Number(runTimeIndex)
-    //    // 设置第一段文字
-    //    dialog.text(content[runTimeIndex])
-    //    console.warn("#自动恢复后的click值")
-    //    console.log(clicks);
-    //    //从localStorage恢复
-    //
-    //    var dataObj=JSON.parse(localStorage.getItem("todoData"))
-    //    if(dataObj)
-    //    {
-    //      todoActionIndexArray=dataObj.todoActionIndex
-    //      functionsList=dataObj.functions
-    //      console.log("恢复数据");
-    //      console.log(dataObj);
-    //      // console.log("恢复函数列表");
-    //      // console.log(functionsList);
-    //    }
-    //  }
-    //  else{
-    //    console.warn("#不存在cookie进度，使用Logic.js定义的值");
-    //  dialog.text(content[0])
-    // }
-    dialog.text(content)
-    console.log("对话框数据_"+content);
+    var runTimeIndex=$.cookie("runTimeIndex")
+    if(runTimeIndex)
+     {
+       console.warn("#存在cookie，使用临时值")
+       alert("#自动恢复进度！")
+       console.warn("当前cookie值")
+       console.log(runTimeIndex);
+       //变量类型转换
+       clicks=Number(runTimeIndex)
+       // 设置第一段文字
+       dialog.text(content[runTimeIndex])
+       console.warn("#自动恢复后的click值")
+       console.log(clicks);
+       //从localStorage恢复
+
+       var dataObj=JSON.parse(localStorage.getItem("todoData"))
+       if(dataObj)
+       {
+         todoActionIndexArray=dataObj.todoActionIndex
+         functionsList=dataObj.functions
+         console.log("恢复数据");
+         console.log(dataObj);
+         // console.log("恢复函数列表");
+         // console.log(functionsList);
+       }
+     }
+     else{
+       console.warn("#不存在cookie进度，使用Logic.js定义的值");
+     dialog.text(content[0])
+    }
+    //dialog.text(content[0])
+    // console.log("对话框"+dialog.content);
    }
    dialog.css("background","orange")
    //对话框在最上面
@@ -119,11 +118,28 @@ this.create_Dialog=function(color)
    {
      clicks+=1
   //   Global_clicks=clicks
-     // dialog.text("测试历史框")
      dialog.text(content[clicks])
-     historyText.push(content[clicks]) /*历史记录*/ //下面代码同时废弃重写
+     // historyText.push(content[clicks]) /*历史记录*/
+     // if(clicks>content.length&&finalAction==null)
+     // {
+     //  console.warn("错误，后面没有句子了,你可以设置播放结束要执行的代码");
+     //   text_reach_end=true
+     // }
+     // if(clicks>content.length&&finalAction!=null)
+     // {
+     //   console.warn("执行用户自定义代码");
+     //   finalAction()
+     // }
      // localStorage.setItem("historyText",historyText)
      // var 历史文本=localStorage.getItem("historyText")
+     // console.log("#保存的历史文本");
+     // console.log(历史文本);
+     //自定义Action和内置事件的执行 @androids7 暂时没有想到检测到cookie时自动恢复进度和函数数组的方法
+     //因为保存页面不在游戏界面上面，跳转会丢失变量，用的cookie暂存index
+     //而且localStorage里面是存不了function的，cookie和json也是存不了函数的
+     //因为要读档啊，读的只有index没有自定义函数，
+     //那就是只是剧情继续播放，人物图像什么的全部无法同步了，就少了setCustomActionAt()这个逻辑了
+     //可能我得重新思考一下存档json格式，不能光存index和日期,这样少了funciton
      for(var i=0;i<todoActionIndexArray.length;i++)
      {
        if(clicks==todoActionIndexArray[i])
@@ -137,8 +153,7 @@ this.create_Dialog=function(color)
 
      }
      //给历史记录添加文本
-      // var tmp_li=$("<li class='historyView'>"+content[clicks]+"</li>")
-      var tmp_li=$("<li class='historyView'>测试历史框</li>")
+      var tmp_li=$("<li class='historyView'>"+content[clicks]+"</li>")
       $("#HistoryPanel").append(tmp_li)
      if(debugMode)
      {
@@ -151,23 +166,67 @@ this.create_Dialog=function(color)
      }
      //alert("点击了对话框")
    })
-   // NOTE: 清除计数器 把不是重要代码缩成一行
-   dialog.clearClicks=function(){
-    console.warn("#计数器清空")
+   // NOTE: 清除计数器
+   dialog.clearClicks=function()
+   {
+     console.warn("#计数器清空")
      clicks=0
      console.warn("#计数器次数")
      console.log(clicks)
    }
    /* 是否显示调试信息*/
-   dialog.setDebugLog=function(bool)
+   dialog.setDebugLog=function(value)
    {
-     debugMode=bool
-     if(bool){console.warn("Dialog调试模式已打开")}
-     else{console.warn("Dialog调试模式已关闭"); }
+     if(value)
+     {
+       debugMode=true
+       console.warn("Dialog调试模式已打开");
+     }
+     else
+     {
+       debugMode=false
+       console.warn("Dialog调试模式已关闭");
+     }
    }
-   // NOTE: 当没有句子可以播放时，执行 废弃
-
-   // NOTE: 下面是两个内置事件 废弃，如果遇到代码问题，从backup代码恢复
+   // NOTE: 当没有句子可以播放时，执行
+   dialog.setFinishAction=function(func)
+   {
+     finalAction=func
+   }
+   // NOTE: 下面是两个内置事件
+   dialog.changeImgAt=function(index,node,newImg)
+   {
+     var changeImage=function()
+     {
+       // alert("内置功能 改变图像")
+       node.attr("src",newImg)
+     }
+     todoActionIndexArray.push(index)
+     functionsList.push(changeImage)
+     //JSON不能存函数 怎么忘了
+     /*要把这个存入localStorage*/
+     var todoObj=JSON.stringify({"todoActionIndex":todoActionIndexArray,"functions":functionsList})
+     localStorage.setItem("todoData",todoObj)
+     console.log("存入数据");
+     console.log(todoObj);
+   }
+   dialog.changeBgmAt=function(index,newSrc)
+   {
+     todoActionIndexArray.push(index)
+     var changeBgm=function()
+     {
+       $("#bgm").attr("src",newSrc)
+       $("#bgm")[0].play()
+     }
+     functionsList.push(changeBgm)
+   }
+   dialog.setCustomActionAt=function(index,func)
+   {
+     //压入事件Index列表
+     todoActionIndexArray.push(index)
+     //压入自定义函数列表
+     functionsList.push(func)
+    }
    // NOTE: 清除事件队列
    dialog.clearActions=function()
    {

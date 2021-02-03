@@ -6,14 +6,9 @@ function FileSystem()
   var debugMode=true
   this.setDebugLog=function(bool)
   {
-    if(bool)
-    {
-      debugMode=true
-    }
-    else
-    {
-      debugMode=false
-    }
+    debugMode=bool
+    if(bool){console.warn("#文件系统调试开启");}
+    else{console.warn("#文件系统调试关闭");}
   }
   /*读取localStorage*/
   this.load=function(key)
@@ -45,14 +40,15 @@ function FileSystem()
       {
         localStorage.setItem("tmp_chapter",data)
       }
-      // if(status!="success"){console.warn("#错误http状态>"+status+"请查阅jquery $.get方法返回值以及http教程");}
       if(data==null){console.warn("#错误，没有获取到文本数据");}
-      //使用中文句号判断一行，所以在文中除了句子段落末尾，别的地方不能出现句号
-      //技术不行，还得看看别人开源引擎是怎么写的
     })
     var tmp=localStorage.getItem("tmp_chapter")
     var t1=tmp.split("\n")
-    // var t1=tmp.split("。")
+    if(debugMode)
+    {
+      console.log("#从剧情文本读取的数组");
+      console.log(t1);
+    }
     // return Array(t1)
     return t1
 

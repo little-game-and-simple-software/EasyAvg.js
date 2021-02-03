@@ -29,7 +29,7 @@ $(function()
     })
     $("#dev").click(function()
     {
-      alert("开发室")
+      alert("Classic_Chocolat\n 这时基于NOeSis旧作上小作重置的版本，当前我们在制作《Q-bit》等面向智能手机的独立开发adv")
     })
     $("#free").click(function()
     {

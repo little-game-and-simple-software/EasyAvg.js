@@ -1,15 +1,16 @@
 // NOTE: 游戏主逻辑文本
+// NOTE: 用于底层data和设计逻辑大概，此Deomo暂时无法正常运行，请下载0.2.3版本的Demo
 $(function()
 {
   var Engine=new EasyAvg()
+  var ChapterLoader=new ChapterReader()
   var file=new FileSystem()
   //动画
   var Anim=new AnimateEffect()
-
   var historyText=[]
   /*初始化图像特效模块*/
   var Effect=new ImageEffect()
-  alert("请先点击开始按钮来播放背景音乐，由于浏览器安全设置，不能自动播放，点击人物，也能开始播放音乐")
+  // alert("请先点击开始按钮来播放背景音乐，由于浏览器安全设置，不能自动播放，点击人物，也能开始播放音乐")
   function initUI()
   {
     $("#start").click(function()
@@ -37,12 +38,7 @@ $(function()
     $("#history").click(function()
     {
       $("#HistoryPanel").toggle()
-      var h=localStorage.getItem("historyText")
-      console.log("#读取历史文本");
-      // console.log(h.split("\n"))
-      var 文本=h.split("\n")
-      var len=h.split("\n").length
-
+      console.log("#显示历史文本");
     })
     $("#reload").click(function()
     {
@@ -69,68 +65,15 @@ koyomi.css("margin-top","20px")
 koyomi.css("position","relative")
 koyomi.click(function()
 {
-  // alert("点击了人物，开始播放音乐")
-  // $("#bgm")[0].play()
-  //此方法不能放入函数列表，会被自动执行
   koyomi.animate({right:'250px',opacity:'0.5'})
-  // koyomi.animate({opacity:'1'})
-  // Anim.setAnimate(koyomi,Anim.move_to_left)
-  // Anim.setAnimate(koyomi,Anim.move_to_right)
-    // koyomi.animate({right:'250px'})
 })
-// NOTE: 从文本文件读取剧情
-var chapter1=file.load_Plot_Text("../chapter/1.txt")
-dialog.setContent(chapter1[0])
+// NOTE: 从文本文件读取剧情 此步骤由剧情加载器完成，不应该人为干涉
+ChapterLoader.testLoad(ChapterLoader.txt1,ChapterLoader.func1)
+// var chapter1=file.load_Plot_Text("../chapter/1.txt")
+// dialog.setContent(chapter1)
 dialog.setDebugLog(true)
 Engine.create_BackroundImg(bg)
-/*-----自定义函数------*/
- var effect=function()
- {
-   Effect.setImageEffect(bg,Effect.blur,"20px")
- }
- var effect2=function()
- {
-   Effect.setImageEffect(bg,Effect.invert,"100%")
- }
- var bright=function()
- {
-   Effect.setImageEffect(koyomi,Effect.bright,"20%")
- }
- var gray=function()
- {
-   Effect.setImageEffect(koyomi,Effect.gray,"100%")
- }
- var clear=function()
- {
-   Effect.clearAllEffect(bg)
-   Effect.clearAllEffect(koyomi)
- }
- /*-------自定义函数----*/
- // 设置文字大小
-// dialog.setFontSize()
- // NOTE: 更换角色没有过度效果 过于突然 以后优化图像效果
- /*--自定义函数绑定---*/
- var s=function()
- {
-     Anim.setAnimate(koyomi,Anim.move_to_left)
- }
-  dialog.changeImgAt(1,koyomi,"../img/k18.png")
-  // dialog.setCustomActionAt(2,koyomi,koyomi.animate({right:'250px',opacity:'0.5'}))
-  dialog.changeImgAt(2,koyomi,"../img/char.png")
-  dialog.changeImgAt(5,koyomi,"../img/c03.png")
-  dialog.setCustomActionAt(14,effect)
-  // //反色
-  dialog.changeImgAt(15,koyomi,"../img/k20.png")
-  dialog.setCustomActionAt(15,effect2)
-  dialog.changeBgmAt(15,"../bgm/i71009_asia.ogg")
-  dialog.setCustomActionAt(17,bright)
-  dialog.setCustomActionAt(18,gray)
-  dialog.setCustomActionAt(19,clear)
-
-  /*恢复原图*/
-  dialog.changeImgAt(20,koyomi,"../img/char.png")
-  dialog.changeBgmAt(20,"../bgm/i71004_fresh.ogg")
-  /*--自定义函数绑定---*/
+ /*-------自定义函数----*/ //全部废弃
 
 //添加ui
 $("body").append(bg)

@@ -1,8 +1,9 @@
 $(function()
 {
-  var Engine=new EasyAvg()
-  var img=Engine.create_img("../fullExample/img/k18.png","koyomi")
-  $("body").append(img)
+  // var Engine=new EasyAvg()
+  // var img=Engine.create_img("../fullExample/img/k18.png","koyomi")
+  // img.css("width","50px")
+  // $("body").append(img)
   console.log("jquery检测");
   $("#fileTest").click(function()
   {
