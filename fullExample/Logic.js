@@ -54,4 +54,8 @@ $(function()
     $("#bgm")[0].load()
     changeScene("splash.html")
   })
+  $("#ModuleTest").click(function()
+  {
+    changeScene("../test/test.html")
+  })
 })

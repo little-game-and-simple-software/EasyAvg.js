@@ -1,28 +1,4 @@
-if(clicks==tmp_doActionAt)
-{
-  console.log("事件队列")
-  console.log(to_do_Actions)
-  // NOTE: 遍历事件队列，并执行对于的操作
- for(var i=0;i<to_do_Actions.length;i++)
- {
-   var currentTask=to_do_Actions[i]
-   if(currentTask=="changeImg")
-   {
-     tmp_node.attr("src",tmp_change_char_img)
-   }
-   if(currentTask=="changeBgm")
-   {
-     $("#bgm").attr("src",tmp_change_bgm)
-   }
-   if(currentTask=="custom")
-   {
-     console.log("自定义函数队列");
-     console.log(custom_Function_List);
-     for(var i=0;i<custom_Function_List.length;i++)
-     {
-       var current_Function=custom_Function_List[i]
-       current_Function()
-     }
-   }
- }
-}
+喂！？一爬起来就趴下可不成啊
+今天第一节课是小考，所以昨天不是说好了要教我功课的吗
+说好的了吧,真是的，再不快点起来我会很困扰的啊
+2.txt

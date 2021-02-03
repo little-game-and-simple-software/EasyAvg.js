@@ -41,15 +41,20 @@ function FileSystem()
     {// WARNING: 这里可能存在小问题，隐患，如果没能及时获取到内容，就bug了
       console.warn("#剧情文本获取状态码>"+status);
       //对文本处理，变成数组
+      if(data)
+      {
+        localStorage.setItem("tmp_chapter",data)
+      }
       // if(status!="success"){console.warn("#错误http状态>"+status+"请查阅jquery $.get方法返回值以及http教程");}
-      localStorage.setItem("tmp_chapter",data)
       if(data==null){console.warn("#错误，没有获取到文本数据");}
       //使用中文句号判断一行，所以在文中除了句子段落末尾，别的地方不能出现句号
       //技术不行，还得看看别人开源引擎是怎么写的
     })
     var tmp=localStorage.getItem("tmp_chapter")
-    var t1=tmp.split("。")
-    return Array(t1)
+    var t1=tmp.split("\n")
+    // var t1=tmp.split("。")
+    // return Array(t1)
+    return t1
 
   }
   /*让用户自定义剧情解析器的换号判断符号*/
