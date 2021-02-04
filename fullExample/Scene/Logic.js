@@ -3,13 +3,12 @@
 $(function()
 {
   var Engine=new EasyAvg()
-  var ChapterLoader=new ChapterReader()
+  // var ChapterLoader=new ChapterReader()
+  var PlotLoader=new IPlotLoader()
   var file=new FileSystem()
-  //动画
-  var Anim=new AnimateEffect()
   var historyText=[]
   /*初始化图像特效模块*/
-  var Effect=new ImageEffect()
+  window.ImageEffect=new ImageEffect()
   // alert("请先点击开始按钮来播放背景音乐，由于浏览器安全设置，不能自动播放，点击人物，也能开始播放音乐")
   function initUI()
   {
@@ -57,25 +56,38 @@ $(function()
   /*逻辑代码*/
   // Engine.showBgm()
  Engine.setBgmVolume(0.5)
- var bg=Engine.create_img("../img/bg.jpg","背景")
+ window.bg=Engine.create_img("../img/bg.jpg","背景")
  var dialog=Engine.create_Dialog()
- var koyomi=Engine.create_img("../img/char.png","小夜美")
-koyomi.css("margin-left","500px")
-koyomi.css("margin-top","20px")
+ //改用全局变量 测试
+ window.koyomi=Engine.create_img("../img/char.png","小夜美")
+ koyomi.css("margin-left","500px")
+ koyomi.css("margin-top","20px")
 koyomi.css("position","relative")
 koyomi.click(function()
 {
+  alert("点我干涉么，溜了..")
   koyomi.animate({right:'250px',opacity:'0.5'})
 })
 // NOTE: 从文本文件读取剧情 此步骤由剧情加载器完成，不应该人为干涉
-var dataArray=ChapterLoader.testLoad(ChapterLoader.txt1,ChapterLoader.func1)
-// console.log("#数据数组");
-// console.log(dataArray);
+// var dataArray=ChapterLoader.testLoad(ChapterLoader.txt1,ChapterLoader.func1)
+
 //初始化剧情
-dialog.setContent(dataArray)
+function initPlot()
+{
+  // var tmp_cookie=$.cookie("tmp_plot_array")
+  // var data_obj=JSON.parse(tmp_cookie)
+  var data_obj=PlotLoader.load("../chapter/1.txt","../chapterScript/func1.js.txt")
+  console.warn("#加载器返回值");
+  console.log("type:"+typeof(data_obj));
+  console.log(data_obj);
+  // dialog.text(data_obj[0])
+  dialog.setContent(data_obj)
+  // dialog.text(data_obj.plot[0])
+}
+initPlot()
+// dialog.setContent(dataArray)
 dialog.setDebugLog(true)
 Engine.create_BackroundImg(bg)
- /*-------自定义函数----*/ //全部废弃
 
 //添加ui
 $("body").append(bg)
@@ -91,7 +103,6 @@ $("#saveGame").click(function()
    console.warn("#运行状态"+index);
    $.cookie('runTimeIndex',index,{path:'/',secure:true})
    // var todoObj=JSON.stringify({"todoActionIndex":todoActionIndexArray,"functions":functionsList})
-   // localStorage.setItem("todoData",todoObj)
    // changeScene("../save.html")
  })
 

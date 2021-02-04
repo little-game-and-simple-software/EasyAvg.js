@@ -1,4 +1,4 @@
 alert('第二章开始')
-alert(2)
-alert(3)
-alert(4)
+console.log("2_1")
+console.log("2_2")
+console.log("2_3")

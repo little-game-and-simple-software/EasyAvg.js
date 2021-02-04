@@ -2,3 +2,16 @@
 今天第一节课是小考，所以昨天不是说好了要教我功课的吗
 说好的了吧,真是的，再不快点起来我会很困扰的啊
 2.txt
+
+之前的get代码 剧情加载器
+// $.get(str_url,function(data,status)
+// {
+//   if(data)
+//   {
+//     var tmp_plot_array=data.split("\n")
+//     result_obj.plot=tmp_plot_array
+//     $.cookie("tmp_plot_array",JSON.stringify(result_obj),{secure:"true"})
+//     console.warn("#剧情加载器获取的json对象")
+//     console.log($.cookie("tmp_plot_array"));
+//   }
+// })

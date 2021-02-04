@@ -1,11 +1,13 @@
 // NOTE: 核心类
 // TODO: 分辨率缩放？
-// NOTE: 大面积重写代码！！
+// NOTE: 运行时变量
 function EasyAvg()
-{
-
+{// TODO: 以后单独设置剧情和脚本路径 便于用户自定义 ，默认路径不动 名称也不动
+  var chapterPath=""
+  var chapterScriptPath=""
   /*框架全局变量，cookie http模式*/
   /*参数"http"和https*/
+  var chapterIndex=1
   var cookieMode=""
   /*设置cookie是http模式还是https模式*/
   this.setCookieMode=function(httpMode)
@@ -31,6 +33,7 @@ function EasyAvg()
   {
     //$("#btn_sound").attr("src",inSrc)
   }
+  //Powered by 信息
   $("body").append("<h6>Powered By <a target='_blank' href='https://github.com/little-game-and-simple-software/EasyAvgFrameWork'>EasyAvgFramework</a></h6>")
       // NOTE: 创建背景图片
       this.create_BackroundImg=function(img)
@@ -56,56 +59,26 @@ function EasyAvg()
 //创建avg背景对话框
 this.create_Dialog=function(color)
 {
-  var ChapterLoader=new ChapterReader()
+  var PlotLoader=new IPlotLoader()
+  // var ChapterLoader=new ChapterReader()
   var historyText=[]/*历史文本 用于显示历史记录*/
   var clicks=0   /*内部计数*/
-  var dataArray=[]   /*二维数据数组*/
+   /*对象*/
+  var dataObj={}
   var debugMode=true /*调试模式*/
-  var todoActionIndexArray=[]   /*内部计数*/
   var functionsList=[]   //要执行的函数列表
-   var dialog=$("<p></p>") /*对话框*/
-   var finalAction /*剧情播放到结尾执行的函数*/
+  var dialog=$("<p></p>") /*对话框*/
+  var finalAction /*剧情播放到结尾执行的函数*/
    /*为对话框设置内容*/
-   dialog.setContent=function(array)
+   dialog.setContent=function(data_obj)
    {
-     dataArray=array
-     // NOTE: 判断是否存在cookie 跳转保存页面后，自动恢复进度
-    // var runTimeIndex=$.cookie("runTimeIndex")
-    // if(runTimeIndex)
-    //  {
-    //    console.warn("#存在cookie，使用临时值")
-    //    alert("#自动恢复进度！")
-    //    console.warn("当前cookie值")
-    //    console.log(runTimeIndex);
-    //    //变量类型转换
-    //    clicks=Number(runTimeIndex)
-    //    // 设置第一段文字
-    //    dialog.text(content[runTimeIndex])
-    //    console.warn("#自动恢复后的click值")
-    //    console.log(clicks);
-    //    //从localStorage恢复
-    //
-    //    var dataObj=JSON.parse(localStorage.getItem("todoData"))
-    //    if(dataObj)
-    //    {
-    //      todoActionIndexArray=dataObj.todoActionIndex
-    //      functionsList=dataObj.functions
-    //      console.log("恢复数据");
-    //      console.log(dataObj);
-    //      // console.log("恢复函数列表");
-    //      // console.log(functionsList);
-    //    }
-    //  }
-    //  else{
-    //    console.warn("#不存在cookie进度，使用Logic.js定义的值");
-    //  dialog.text(content[0])
-    // }
-    dialog.text(dataArray[0][0])
-    console.log("对话框数据")
-    console.log(dataArray[0]);
-    var tmp_li=$("<li class='historyView'>"+dataArray[0][0]+"</li>")
+     dataObj=data_obj
+     dialog.text(data_obj.plot_array[0])
+     console.log("对话数据")
+     console.log(dataObj.plot_array);
+    var tmp_li=$("<li class='historyView'>"+dataObj.plot_array[0]+"</li>")
     $("#HistoryPanel").append(tmp_li)
-    eval(dataArray[1][0])
+    eval(dataObj.func_array[0])
    }
    dialog.css("background","orange")
    //对话框在最上面
@@ -122,13 +95,22 @@ this.create_Dialog=function(color)
    dialog.click(function()
    {
      clicks+=1
-     var line=dataArray[0][clicks]
+     var line=dataObj.plot_array[clicks]
+     var lineCode=dataObj.func_array[clicks]
      dialog.text(line)
      if(line==">") //下一章
-     {
-       clicks=0 // NOTE: 进入下一章索引归零
-       dataArray=ChapterLoader.testLoad(ChapterLoader.txt2,ChapterLoader.func2)
-       dialog.text(dataArray[0][0])
+     {// NOTE: 进入下一章索引归零 并且章节索引+1
+       clicks=0
+       chapterIndex+=1 //组合成通用方法
+       dataObj=PlotLoader.load("../chapter/"+chapterIndex+".txt","../chapterScript/func"+chapterIndex+".js.txt")
+       console.warn("#下一章文本");
+       console.log(dataObj.plot_array[0]);
+       dialog.text(dataObj.plot_array[0])
+       eval(dataObj.func_array[0])
+       if(debugMode)
+       {
+         console.log("当前章节_"+chapterIndex);
+       }
      }
      if(line.indexOf("<")==0) //结尾
      {
@@ -146,7 +128,8 @@ this.create_Dialog=function(color)
        }
      }
      console.log("#当前句子_"+line);
-     eval(dataArray[1][clicks])
+     console.log("#当前代码_"+lineCode);
+     eval(lineCode)
      //给历史记录添加文本
       var tmp_li=$("<li class='historyView'>"+line+"</li>")
       $("#HistoryPanel").append(tmp_li)
@@ -168,12 +151,6 @@ this.create_Dialog=function(color)
      debugMode=bool
      if(bool){console.warn("Dialog调试模式已打开")}
      else{console.warn("Dialog调试模式已关闭"); }
-   }
-   // NOTE: 下面是两个内置事件 废弃，如果遇到代码问题，从backup代码恢复
-   // NOTE: 清除事件队列
-   dialog.clearActions=function()
-   {
-     to_do_Actions=[]
    }
    //获得运行时，index，跳转存档页面会丢失数据，用于暂存
    dialog.getRuntimeIndex=function()

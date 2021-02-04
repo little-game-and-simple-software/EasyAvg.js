@@ -1,7 +1,6 @@
 // NOTE: jQuery递归获取文本测试
 $(function()
 {
-  
   var dataArray=[]
   var scriptArray=[]
   var 剧情分词=[]
@@ -55,7 +54,6 @@ $(function()
       }
     }
     })
-
 }
 
   $("#jqueryGetTest").click(function()
