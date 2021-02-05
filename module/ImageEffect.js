@@ -1,4 +1,5 @@
 // NOTE: 一次只能设置一个效果！
+// TODO: 尝试人物表情交叉淡化的效果
 function ImageEffect()
 {
   var debug=false

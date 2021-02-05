@@ -3,3 +3,8 @@ koyomi.attr("src","../img/c03.png")
 koyomi.attr("src","../img/k18.png")
 
 ImageEffect.setImageEffect(bg,"invert","100%");
+$("#bgm").attr("src","../bgm/i71009_asia.ogg")
+ImageEffect.clearAllEffect(bg)
+ImageEffect.setImageEffect(koyomi,"blur","20px")
+ImageEffect.clearAllEffect(koyomi);koyomi.attr("src","../img/char.png")
+$("#bgm").attr("src","../bgm/i71004_fresh.ogg")

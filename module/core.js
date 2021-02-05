@@ -3,11 +3,12 @@
 // NOTE: 运行时变量
 function EasyAvg()
 {// TODO: 以后单独设置剧情和脚本路径 便于用户自定义 ，默认路径不动 名称也不动
-  var chapterPath=""
-  var chapterScriptPath=""
+  var chapterPath="../chapter/"
+  var chapterScriptPath="../chapterScript/"
   /*框架全局变量，cookie http模式*/
   /*参数"http"和https*/
   var chapterIndex=1
+  var lineIndex=0
   var cookieMode=""
   /*设置cookie是http模式还是https模式*/
   this.setCookieMode=function(httpMode)
@@ -60,7 +61,6 @@ function EasyAvg()
 this.create_Dialog=function(color)
 {
   var PlotLoader=new IPlotLoader()
-  // var ChapterLoader=new ChapterReader()
   var historyText=[]/*历史文本 用于显示历史记录*/
   var clicks=0   /*内部计数*/
    /*对象*/
@@ -69,7 +69,23 @@ this.create_Dialog=function(color)
   var functionsList=[]   //要执行的函数列表
   var dialog=$("<p></p>") /*对话框*/
   var finalAction /*剧情播放到结尾执行的函数*/
-   /*为对话框设置内容*/
+  //初始化Dialog样式
+  function InitDialogStyle()
+  {
+    dialog.css("background","orange")
+    //对话框在最上面
+    dialog.css("z-index",-1)
+    dialog.css("border","solid","border-width","1px")
+    dialog.css("position","absolute")
+    // NOTE: 初始化对话框高度宽度 位置
+    dialog.css("margin-top","0px")
+    dialog.css("height","100px")
+    dialog.css("width","100%")
+    // 默认25px大小
+    dialog.css("font-size","25px")
+  }
+  InitDialogStyle()
+   /*为对话框设置初始化内容*/
    dialog.setContent=function(data_obj)
    {
      dataObj=data_obj
@@ -79,18 +95,20 @@ this.create_Dialog=function(color)
     var tmp_li=$("<li class='historyView'>"+dataObj.plot_array[0]+"</li>")
     $("#HistoryPanel").append(tmp_li)
     eval(dataObj.func_array[0])
+  }
+  //加载已经存在的游戏进度时使用的方法
+   dialog.setLoadContent=function(data_obj)
+   {
+     //更新索引
+     dataObj=data_obj
+     chapterIndex=Number(data_obj.chapterIndex)
+     lineIndex=Number(data_obj.lineIndex)
+     clicks=data_obj.lineIndex
+     dialog.text(dataObj.plot_array[lineIndex])
+     var tmp_li=$("<li class='historyView'>"+dataObj.plot_array[lineIndex]+"</li>")
+     $("#HistoryPanel").append(tmp_li)
+     eval(dataObj.func_array[lineIndex])
    }
-   dialog.css("background","orange")
-   //对话框在最上面
-   dialog.css("z-index",-1)
-   dialog.css("border","solid","border-width","1px")
-   dialog.css("position","absolute")
-   // NOTE: 初始化对话框高度宽度 位置
-   dialog.css("margin-top","0px")
-   dialog.css("height","100px")
-   dialog.css("width","100%")
-   // 默认25px大小
-   dialog.css("font-size","25px")
    // NOTE: 默认dialog点击器
    dialog.click(function()
    {
@@ -152,10 +170,14 @@ this.create_Dialog=function(color)
      if(bool){console.warn("Dialog调试模式已打开")}
      else{console.warn("Dialog调试模式已关闭"); }
    }
-   //获得运行时，index，跳转存档页面会丢失数据，用于暂存
-   dialog.getRuntimeIndex=function()
+   //获得点击次数
+   dialog.getClicks=function()
    {
      return clicks
+   }
+   dialog.getRuntimeIndex=function()
+   {
+     return chapterIndex+"_"+clicks
    }
    /*设置Dialog文字大小*/
    dialog.setFontSize=function(size)
@@ -177,4 +199,3 @@ this.changeBgm=function(src)
   $("#bgm").attr("src",src)
 }
 }
-//测试代码

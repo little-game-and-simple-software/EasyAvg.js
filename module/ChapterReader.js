@@ -66,66 +66,12 @@ function ChapterReader()//章节加载器
       var current_result=[]//剧情数组元素在前，函数数组元素在后
       var 剧情分词=str.split("\n")
       var 函数分词=func.split("\n")
-      // console.log("剧情分词");
-      // console.log(剧情分词)
-      // console.log("#函数分词");
-      // console.log(函数分词)
-      // NOTE: for循环存在递归
       console.warn("#开始读取");
       current_result.push(剧情分词)
       current_result.push(函数分词)
       return current_result
     }
-  // this.test=function(str,func) 保存一下
-  // {
-  //   var 剧情分词=str.split("\n")
-  //   var 函数分词=func.split("\n")
-  //   console.log("剧情分词");
-  //   console.log(剧情分词)
-  //   console.log("#函数分词");
-  //   console.log(函数分词)
-  //   // NOTE: for循环存在递归
-  //   console.warn("#开始读取");
-  //   for(var i=0;i<剧情分词.length;i++)
-  //   {
-  //     var line=剧情分词[i]
-  //     /*每行代码*/
-  //     var line_code=函数分词[i]
-  //     console.log("每行句子:"+line)
-  //     console.log("每行对应函数"+line_code);
-  //     var 语法=check_line(line) //语法检查
-  //     if(语法==true)
-  //     {
-  //       if(line==">")
-  //       {
-  //         console.warn("#正式进入下一章");
-  //         this.test(this.txt2,this.func2)
-  //       }
-  //       console.warn("#eval执行！↓");
-  //       eval(line_code)
-  //       console.warn("#eval单行结束，继续循环");
-  //       if(line.indexOf("<")==0)
-  //       {
-  //         if(line.split("<")[1]=="end")
-  //         {
-  //           console.warn("系统结束方式");
-  //           // NOTE: 跳转之前先存档
-  //           window.open("../fullExample/Splash.html","_self")
-  //         }
-  //         if(line.split("<")[1]=="custom_end")
-  //         {
-  //           console.warn("自定义结束方式");
-  //           tmp_func()
-  //         }
-  //       }
-  //     }
-  //     else
-  //     {
-  //       console.warn("#你的代码存在错误语法，程序停止运行");
-  //       break
-  //     }
-  //   }
-  // }
+
   this.setDebugLog=function(bool)
   {
     debug=bool

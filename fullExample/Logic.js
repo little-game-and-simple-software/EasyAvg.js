@@ -1,6 +1,7 @@
 $(function()
 {
-  var Engine=new EasyAvg()
+  window.Engine=new EasyAvg()
+  var fileManager=new FileSystem()
   function initBg()
   {
     var bg=$("#bg")
@@ -20,6 +21,8 @@ $(function()
     $("#newGame").click(function()
     {
       alert("新游戏")
+      //点击后，自动清除缓存
+      localStorage.removeItem("RunTimeIndex")
       changeScene("Scene/Game.html")
     })
     $("#loadGame").click(function()

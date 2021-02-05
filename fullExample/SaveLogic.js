@@ -6,7 +6,6 @@ $(function() {
   $("li").mouseenter(function()
   {
     $("#se")[0].play()
-    // $("#se")[0].load()
   })
 
   /*用于存文件*/
@@ -18,7 +17,6 @@ $(function() {
   var today = date.toDateString() + " " + "NEW!"
   /*用于给读档按钮的json数据*/
   var data_list=[]
-  // var list=[]
   //初始化文件系统
   var fileManager = new FileSystem()
   function init()
@@ -54,27 +52,28 @@ $(function() {
     var saveState = confirm("存档吗?")
   //  console.log($(this));
     if (saveState) {
-      var a = $("<img width='5%' src='img/k18.png' alt='存档截屏快照'>" + "<span>" + today + "</span>")
+      var a = $("<span>" + today + "</span>")
       $(this).html(a)
       id = $(this).attr("value")
       //获得点击index
       console.warn("#存档index>" + id);
+      //搞什么社区团购 烦死了，我只想做电脑，赚钱什么 全部都是自私的陋习
       //var toSaveData=$.cookie("runTimeIndex")
       console.log("新存档！");
-      //测试用
-      // var toSaveData = 1
-      var toSaveData=$.cookie("runTimeIndex")
-      alert("cookie传入>"+toSaveData)
+      //截屏对象
+      var shot_img=""
+      var toSaveData=localStorage.getItem("RunTimeIndex")
+      alert("缓存传入>"+toSaveData)
       var dataObject = {
         "data": toSaveData,
-        "date": today
+        "date": today,
+        "screenShot":"src",
       }
       var save_data_object = JSON.stringify(dataObject)
       alert(save_data_object)
       fileManager.save("saveData" + id, save_data_object)
       // 自动刷新页面
       location.reload()
-      //  console.log("cookieIndex#>"+toSaveData)
     }
   })
   $("#back").click(function() {
@@ -109,16 +108,21 @@ $(function() {
       }
       /*正确读档行为*/
       else{
+        //加载的数据
       var loaded_data=data_list[loadId-1].data
-      console.log("读取后正确数据>"+loaded_data);
-      /*更新cookie数据*/
-      $.cookie("runTimeIndex",loaded_data,{path:'/'})
-      console.log("cookie值>"+$.cookie("runTimeIndex"));
-      /*正确读取后自动返回*/
+      console.log("读取后正确数据>"+loaded_data)
+      //处理值
       if(loaded_data!=null)
       {
-        changeScene("Scene/Game.html")
-      }
+        //取得存档后，把信息分离 告诉加载器的逻辑应该写在哪里
+        //更新缓存
+        localStorage.setItem("RunTimeIndex",loaded_data)
+        var t=localStorage.getItem("RunTimeIndex")
+        if(t!=null)
+        {
+          changeScene("Scene/Game.html")
+        }
+       }
       }
     }
     else

@@ -1,4 +1,9 @@
 alert('第二章开始')
-console.log("2_1")
-console.log("2_2")
-console.log("2_3")
+koyomi.attr("src","../img/y01.png")
+
+koyomi.attr("src","../img/k13.png")
+
+koyomi.attr("src","../img/char.png")
+koyomi.attr("src","../img/k13.png")
+koyomi.attr("src","../img/k15.png")
+koyomi.attr("src","../img/char.png")

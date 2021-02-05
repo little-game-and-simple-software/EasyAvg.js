@@ -58,7 +58,7 @@ function FileSystem()
   {
     custom_split_char=str
   }
-  /*清空所欲存档*/
+  /*清空所有存档*/
   this.clearAll=function()
   {
     localStorage.clear()
