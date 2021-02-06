@@ -14,8 +14,4 @@ var end=function()
   alert("代码运行到了结尾")
 }
 dialog.setFinishAction(end)
-  //console.warn("#获得object的所有属性");
-
-//  console.log(typeof(chapter1));
-//  print_obj_things(chapter1)
 })

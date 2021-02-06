@@ -9,6 +9,7 @@ function AnimateEffect()
   this.shake="shake"
   this.move_to_left="move_to_left"
   this.move_to_right="move_to_right"
+  //以下代码仅在initGame.js中测试成功 在chapterScript还没测试过
   this.setAnimate=function(obj,effect)
   {
     if(effect=="move_to_left")

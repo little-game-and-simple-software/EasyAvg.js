@@ -2,33 +2,8 @@
 // NOTE: 可能需要一个新的线程
 //关键字> 下一章 <结束判断符号
 var fileLoader=new FileSystem()
-function check_line(line) //语法检查器 实现了 以后需要移动位置
-{//true为正确 false为错误
-  var 语法正确吗=false
-  if(line.indexOf(">")==0) //检测是否进入下一章
-  {
-    // console.log("#检测到游戏下一章符号");
-    语法正确吗=true
-  }
-  if(line.indexOf("<")==0) //结束语法
-  {
-    // console.log("#检测到游戏结束符号");
-    if(line.split("<")[1]=="end")
-    {
-      语法正确吗=true
-    }
-    if(line.split("<")[1]=="custom_end")
-    {
-      语法正确吗=true
-    }
-  }
-  else
-  {
-    语法正确吗=true
-  }
-  return 语法正确吗
-}
-function ChapterReader()//章节加载器
+//章节加载器 以下为测试代码，可以看原理
+function ChapterReader()
 {
   /*用户定义函数*/
   var tmp_func

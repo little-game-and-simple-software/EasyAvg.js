@@ -1,0 +1,6 @@
+第三方库
+jQuery 此框架基础
+jQuery_cookie 辅助设置cookie jQuery插件
+jQuery_UI 复杂ui
+typed_JS 可以实现打字机效果
+shakecss 摄像机抖动

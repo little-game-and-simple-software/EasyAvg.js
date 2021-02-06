@@ -1,4 +1,4 @@
-// NOTE: 改变游戏场景
+// NOTE: 改变游戏场景 封装的快捷方法
 function changeScene(scene)
 {
   window.open(scene,"_self")

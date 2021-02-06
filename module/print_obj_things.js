@@ -1,4 +1,5 @@
 //打印出object对象所有的属性 返回包含object所有属性 的数组
+//实用代码
 function print_obj_things(obj)
 {
   var array=[]

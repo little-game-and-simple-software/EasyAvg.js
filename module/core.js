@@ -1,16 +1,19 @@
 // NOTE: 核心类
 // TODO: 分辨率缩放？
-// NOTE: 运行时变量
+
 function EasyAvg()
-{// TODO: 以后单独设置剧情和脚本路径 便于用户自定义 ，默认路径不动 名称也不动
+{
+  // TODO: 以后单独设置剧情和脚本路径 便于用户自定义 ，默认路径不动 名称也不动
   var chapterPath="../chapter/"
   var chapterScriptPath="../chapterScript/"
-  /*框架全局变量，cookie http模式*/
-  /*参数"http"和https*/
+  // NOTE: 运行时变量
   var chapterIndex=1
   var lineIndex=0
   var cookieMode=""
+  /*框架全局变量，cookie http模式*/
+  /*参数"http"和https*/
   /*设置cookie是http模式还是https模式*/
+  // NOTE: 暂时未使用的方法
   this.setCookieMode=function(httpMode)
   {
     if(httpMode!="http" || httpMode!="https")
@@ -19,19 +22,16 @@ function EasyAvg()
     }
     cookieMode=httpMode
   }
-  /*设置bgm音量，全局 必须是ID为bgm的元素 值0-1之间的float*/
-  this.setBgmVolume=function(volume)
-  {
-    // alert("设置音量")
-    $("#bgm")[0].volume=volume
-  }
+
   this.pauseBgm=function()
   {
+    console.warn("#暂停音乐");
     $("#bgm")[0].pause()
   }
   /*绑定按钮音效 src*/
   this.setButtonSound=function(inSrc)
   {
+    // TODO: 这个方法可能需要修一修
     //$("#btn_sound").attr("src",inSrc)
   }
   //Powered by 信息
@@ -39,17 +39,18 @@ function EasyAvg()
       // NOTE: 创建背景图片
       this.create_BackroundImg=function(img)
       {
-        $("body").append(img)
+        // NOTE: 此方法的可能需要改一改
         img.css("z-index","-2")
         img.css("position","absolute")
         img.css("margin-left","200px")
+        $("body").append(img)
       }
-       // NOTE: 修改图片大小
+       // NOTE: 修改图片大小 暂时未使用
        this.scale_img=function(img,scale)
        {
         // img.css("width",scale)
        }
-    /* 创建图片 src attr*/
+    /* 创建图片 src：图片路径 alt：无法显示时描述信息*/
    this.create_img=function (src,alt)
    {
       var img=$("<img>")
@@ -79,12 +80,28 @@ this.create_Dialog=function(color)
     dialog.css("position","absolute")
     // NOTE: 初始化对话框高度宽度 位置
     dialog.css("margin-top","0px")
+    dialog.css("margin-left","200px")
     dialog.css("height","100px")
-    dialog.css("width","100%")
+    dialog.css("width","58%")
     // 默认25px大小
     dialog.css("font-size","25px")
   }
-  InitDialogStyle()
+  // NOTE: 是否使用默认界面样式
+  dialog.useDefaultStyle=function(bool)
+  {
+    // useDefaultStyle=bool
+    console.log("是否使用默认样式:"+bool)
+    if(bool==true)
+    {
+      console.warn("--启用默认样式")
+      InitDialogStyle()
+    }
+    else
+    {
+      console.warn("--取消使用默认样式")
+      console.warn("#你取消了默认样式，所以你需要自定义css样式")
+    }
+  }
    /*为对话框设置初始化内容*/
    dialog.setContent=function(data_obj)
    {
@@ -136,13 +153,13 @@ this.create_Dialog=function(color)
        if(line.split("<")[1]=="end")
        {
          alert("默认结束方法")
-         window.open("../../fullExample/Splash.html","_self")
+         window.open("../../fullExample/index.html","_self")
        }
        if(line.split("<")[1]=="custom_end")
        {
          dialog.text("")
          alert("自定义结束方法")
-         window.open("../../fullExample/Splash.html","_self")
+         window.open("../../fullExample/index.html","_self")
        }
      }
      console.log("#当前句子_"+line);
@@ -186,6 +203,7 @@ this.create_Dialog=function(color)
    }
    return dialog
 }
+/*音频相关*/
 this.showBgm=function()
 {
   $("#bgm").css("display","block")
@@ -198,4 +216,11 @@ this.changeBgm=function(src)
 {
   $("#bgm").attr("src",src)
 }
+/*设置bgm音量，全局 必须是ID为bgm的元素 值0-1之间的float*/
+this.setBgmVolume=function(volume)
+{
+  console.warn("#设置音量！");
+  $("#bgm")[0].volume=volume
+}
+/*音频相关结束*/
 }

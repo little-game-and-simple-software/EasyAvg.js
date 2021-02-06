@@ -51,7 +51,6 @@ function FileSystem()
     }
     // return Array(t1)
     return t1
-
   }
   /*让用户自定义剧情解析器的换号判断符号*/
   this.set_plot_split_char=function(str)

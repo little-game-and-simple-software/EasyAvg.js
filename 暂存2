@@ -14,4 +14,4 @@
 //     console.warn("#剧情加载器获取的json对象")
 //     console.log($.cookie("tmp_plot_array"));
 //   }
-// })
+// }) @Paaliaq 恭喜啊
