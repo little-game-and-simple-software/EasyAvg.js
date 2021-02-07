@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>内置存档和读档界面</title>
+    <link rel="stylesheet" href="css/save.css">
+    <link rel="stylesheet" href="css/button.css">
+    <!--框架运行强制依赖js插件-->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="module/changeScene.js"></script>
+    <script src="module/FileSystem.js"></script>
+    <script src="Load_and_Save.js"></script>
+    <!-- <link rel="stylesheet" href="css/bgm.css"> -->
+  </head>
+  <body>
+    <!-- NOTE: 现在存档和读档功能合并在一个页面了 -->
+    <audio id="bgm"  src="" controls="true" loop="true" >你的浏览器不支持audio，快点换新的浏览器吧 </audio>
+    <audio  id="se" src="" controls>    </audio>
+    <h2>存档与读档,请点击下面的列表存档，输入数值读档</h2>
+    <img src="" alt="存档图片">
+    <ol id="saveList">
+      <!-- 改用动态创建 -->
+  <li value="1"><img width="5%">No Data</li>
+  <li value="2"><img width="5%">No Data</li>
+  <li value="3"><img width="5%">No Data</li>
+  <li value="4"><img width="5%">No Data</li>
+  <li value="5"><img width="5%">No Data</li>
+  <li value="6"><img width="5%">No Data</li>
+  <li value="7"><img width="5%">No Data</li>
+  <li value="8"><img width="5%">No Data</li>
+  <li value="9"><img width="5%">No Data</li>
+  <li value="10"><img width="5%">No Data</li>
+</ol>
+    <h2>技术问题，读档需要手动输入要读取存档的序号</h2>
+    <p>存档完，可以立即读档，存档完成自动刷新，存档在自动刷新之前完成，所以刷新只是为了更新界面数据，而不是存档</p>
+<p>如果遇到任何网页没有及时加载出内容，请手动刷新！</p>
+<h2 style="color:red">注意，第十个存档槽存在bug，请不要在这里保存游戏</h2>
+    <input id="loadId" type="text" value="" placeholder="请输入要读取的存档的序号">
+    <button id="loadGame">读档</button>
+    <button id="reset">清空所有存档</button>
+    <button id="back">返回</button>
+  </body>
+</html>

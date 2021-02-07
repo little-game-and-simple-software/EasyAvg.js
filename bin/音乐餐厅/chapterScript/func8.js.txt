@@ -1,0 +1,2 @@
+
+bg.attr("src","../img/shop.jpg")

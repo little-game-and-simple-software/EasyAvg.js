@@ -1,0 +1,7 @@
+
+bg.attr("src","../img/home.jpg")
+bg.attr("src","../img/tenRoad.jpg")
+bg.attr("src","../img/kitchine.jpg")
+koyomi.attr("src","../img/friend.png")
+koyomi.attr("src","../img/char.png")
+koyomi.attr("src","../img/k07.png")

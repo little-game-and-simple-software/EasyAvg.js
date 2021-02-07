@@ -1,0 +1,26 @@
+/* 历史记录框默认样式 */
+.historyView
+{
+  border: solid;
+  border-radius: 5px;
+  background-color:#ACA772;
+  transition: background-color 0.2s;
+  margin-top:0px;
+}
+.historyView:hover
+{
+  background-color: white;
+}
+/* 历史记录根节点 ol元素样式 */
+#HistoryPanel
+{
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 200px;
+  z-index:1 ;
+  background-color:rgba(252,236,201,0.5) ;
+  width:800px;
+  height:600px;
+  overflow:scroll;
+}
+/* @androids7 你重写的代码使用什么逻辑来写 */

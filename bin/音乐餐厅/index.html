@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>启动主页，用于显示自己的开发信息和powered by EasyAvgFrameWork新信息</title>
+    <!-- 必备依赖 -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="module/changeScene.js"></script>
+  </head>
+  <body>
+    <!-- 启动Logo附带音效，参数可更改 -->
+    <audio id="se" src="sound/s03.mp3"> </audio>
+    <!-- 你可以在这里添加更多信息，如你的工作室名称，开发者名称，游戏logo等 -->
+    <h1 align="center" style="display:none">EasyAvgFrameWork</h1>
+    <img id="Logo" src="EasyAvg.png" alt="EasyAvg的Logo">
+
+    <script>
+    // NOTE: 以下是淡入效果，执行完之后，自动进入游戏主菜单界面，可以根据自己需要更改参数
+    //和添加代码
+    $(function()
+    {
+      $("#se")[0].play()
+      $("#Logo").css("margin-left","650px")
+      $("#Logo").css("height","200px")
+      $("h1").fadeIn(2500,function()
+      {
+        changeScene("MainMenu.html")
+      })
+    })
+    </script>
+  </body>
+</html>

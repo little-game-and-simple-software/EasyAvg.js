@@ -1,0 +1,19 @@
+/* 默认读档存档管理界面样式 */
+ol
+{
+  /* background-color:orange; */
+  /* background-color: rgba(0,0,225,0.4) */
+  background-color: #318ee5
+}
+li
+{
+  background-color:#ACA772;
+  margin-top: 5px;
+  transition: background-color 0.3s;
+}
+li:hover
+{
+  /* background-color:rgba(0,0,0,0.5); */
+  background-color: yellow;
+  /* color:red; */
+}

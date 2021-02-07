@@ -1,0 +1,9 @@
+
+
+
+
+
+
+koyomi.attr("src","../img/friend.png")
+koyomi.attr("src","../img/friend02.png")
+koyomi.attr("src","../img/char.png")

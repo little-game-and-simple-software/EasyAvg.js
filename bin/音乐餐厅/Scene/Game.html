@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+        <!--框架运行强制依赖js插件-->
+        <!--<script src="jQuery_main.js"></script>-->
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="../module/core.js"></script>
+        <script src="../module/FileSystem.js"></script>
+        <script src="../module/changeScene.js"></script>
+        <script src="../module/ImageEffect.js"></script>
+        <script src="../module/PlotLoader.js"></script>
+        <script src="InitGame.js"></script>
+        <!--内置button样式，如果不喜欢，可以自己建立css样式-->
+        <link rel="stylesheet" href="../css/button.css">
+        <link rel="stylesheet" href="../css/bgm.css">
+        <link rel="stylesheet" href="../css/historyView.css">
+    </head>
+    <body>
+      <!-- 你的游戏背景音乐 -->
+      <audio  id="bgm" src="../bgm/i72002_slow_time.ogg" controls="true" autoplay="false" loop="true"></audio>
+        <h1> EasyAvgFramework </h1>
+        <button id="start">开始</button>
+        <button id="end">返回</button>
+        <button id="loadGame">读档</button>
+        <button id="saveGame">存档</button>
+        <button id="clearClicks">清空计数器</button>
+        <button id="reload">刷新页面</button>
+        <button id="history">历史记录</button>
+        <button id="hideDialog">隐藏对话框</button>
+        <button id="clearAll">清空所有localStorage</button>
+        <button id="loadFromChapterBtn">从头加载指定的章节 方便测试用</button>
+        <sapn>开发游戏时，请删除这个防止玩家乱点</span>
+        <ol id="HistoryPanel" style="display:none"></ol>
+        <h6> Copyright © 2020 小沙盒工作室&128hh. </h6>
+    </body>
+</html>

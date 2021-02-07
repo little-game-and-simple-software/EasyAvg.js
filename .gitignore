@@ -1,3 +1,4 @@
 EasyAvgFrameWork.zip
-/bin
+#/bin
 /tempz
+*.zip

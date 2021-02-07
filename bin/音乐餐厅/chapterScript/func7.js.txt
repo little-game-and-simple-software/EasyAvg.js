@@ -1,0 +1,1 @@
+koyomi.attr("src","../img/char.png")

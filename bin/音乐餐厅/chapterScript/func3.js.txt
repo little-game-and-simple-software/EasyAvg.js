@@ -1,0 +1,6 @@
+koyomi.attr("src","../img/char.png")
+
+koyomi.attr("src","../img/k07.png")
+bg.attr("src","../img/home.jpg");koyomi.attr("src","../img/char.png");
+bg.attr("src","../img/homeNight.jpg")
+bg.attr("src","../img/kitchine.jpg")
