@@ -1,6 +1,12 @@
 
 koyomi.attr("src","../img/friend.png")
-
 koyomi.attr("src","../img/char.png")
-//bg.attr("src")
-bg.attr("src","../img/friends.png")
+
+
+bg.attr("src","../img/friends.png");koyomi.attr("src","../img/fangdong.png");
+koyomi.attr("src","../img/char.png")
+koyomi.attr("src","../img/fangdong.png")
+koyomi.attr("src","../img/char.png")
+
+koyomi.attr("src","../img/k07.png")
+koyomi.attr("src","../img/char.png")

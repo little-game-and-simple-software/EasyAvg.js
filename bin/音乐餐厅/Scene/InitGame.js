@@ -6,6 +6,11 @@ $(function()
   var PlotLoader=new IPlotLoader()
   var file=new FileSystem()
   var historyText=[]
+  // 定义人物路径变量
+  window.mainChar="../img/char.png"
+  window.friend="../img/friend.png"
+  window.friends="../img/friends.png"
+  window.strange="../img/strange.png"
   /*初始化图像特效模块*/
   window.ImageEffect=new ImageEffect()
   // alert("请先点击开始按钮来播放背景音乐，由于浏览器安全设置，不能自动播放，点击人物，也能开始播放音乐")
@@ -69,6 +74,7 @@ $(function()
 //开启调试信息
 dialog.setDebugLog(false)
 dialog.useDefaultStyle(true) //是否使用默认样式
+dialog.setFontSize("15px")
 //创建背景图片
 Engine.create_BackroundImg(bg)
 //添加ui

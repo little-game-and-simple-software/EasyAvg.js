@@ -1,9 +1,10 @@
-
+//或许可以添加一个用于测试的API,是否启用自动运行剧情脚本 还有全局角色变量表，每次都要输入参数烦死了
 
 
 
 
 
 koyomi.attr("src","../img/friend.png")
-koyomi.attr("src","../img/friend02.png")
+koyomi.attr("src","../img/char.png")
+koyomi.attr("src","../img/friend.png")
 koyomi.attr("src","../img/char.png")

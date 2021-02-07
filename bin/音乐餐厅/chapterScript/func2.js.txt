@@ -1,7 +1,9 @@
 
 bg.attr("src","../img/home.jpg")
 bg.attr("src","../img/tenRoad.jpg")
-bg.attr("src","../img/kitchine.jpg")
+bg.attr("src","../img/kitchine.jpg");koyomi.attr("src","../img/friend.png");
+koyomi.attr("src","../img/char.png")
 koyomi.attr("src","../img/friend.png")
 koyomi.attr("src","../img/char.png")
-koyomi.attr("src","../img/k07.png")
+
+koyomi.attr("src","../img/friend02.png");$("#bgm").attr("src","../bgm/i71005_wa-sweets.ogg");

@@ -1,6 +1,10 @@
-koyomi.attr("src","../img/char.png")
-
+$("#bgm").attr("src","../bgm/i72002_slow_time.ogg")
+bg.attr("src","../img/home.jpg");koyomi.attr("src","../img/char.png");
 koyomi.attr("src","../img/k07.png")
 bg.attr("src","../img/home.jpg");koyomi.attr("src","../img/char.png");
 bg.attr("src","../img/homeNight.jpg")
-bg.attr("src","../img/kitchine.jpg")
+bg.attr("src","../img/kitchine.jpg");koyomi.attr("src","../img/char.png");
+bg.attr("src","../img/streetNight.jpg")
+koyomi.attr("src","../img/fangdong.png")
+
+koyomi.attr("src","../img/char.png")

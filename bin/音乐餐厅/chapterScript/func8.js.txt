@@ -1,2 +1,16 @@
 
 bg.attr("src","../img/shop.jpg")
+koyomi.attr("src","../img/friends.png")
+
+koyomi.attr("src","../img/char.png")
+
+koyomi.attr("src","../img/strange.png")
+
+koyomi.attr("src","../img/char.png")
+koyomi.attr("src","../img/strange.png")
+
+koyomi.attr("src","../img/char.png")
+
+
+
+bg.attr("src","../img/050.jpg")
