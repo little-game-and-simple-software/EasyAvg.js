@@ -113,7 +113,7 @@ this.create_Dialog=function(color)
     if(data_obj.has_func==false)
     {
       // console.clear()
-      console.warn("#此章节不存在用于脚本，不执行脚本,测试信息，请忽略")
+      console.warn("#此章节对应自定义js文件不存在，不执行脚本,测试信息，请忽略")
       alert("不存在js文件，跳过运算js代码")
     }
     if(data_obj.has_func==true)

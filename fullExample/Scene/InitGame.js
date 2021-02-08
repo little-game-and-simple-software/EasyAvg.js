@@ -124,4 +124,24 @@ $("#saveGame").click(function()
      changeScene("../Load_and_Save.html")
    }
  })
+ //读取指定的章节文件
+ $("#loadFromChapterBtn").click(function()
+ {
+   var input_str=$("#loadFromInput").val()
+   var chapterIndex=input_str.split("_")[0]
+   var lineIndex=input_str.split("_")[1]
+   var dataObj=PlotLoader.load_from(chapterIndex,lineIndex)
+   if(dataObj!=null)
+   {
+     console.log("存在数据")
+     dialog.setLoadContent(dataObj)
+     console.log("#游戏进度_>_"+t_data)
+     console.warn("#返回的加载后的数据");
+     console.log(dataObj);
+   }
+   else
+   {
+     console.log("#错误，无法获得返回的加载数据")
+   }
+ })
 })

@@ -1,5 +1,4 @@
 //整合一下 这个将会是新的剧情加载器
-// NOTE: 这里细节需要修改一下 如果当前章节不需要对应的脚本，则不去获取脚本
 function IPlotLoader()
 { // NOTE: 剧情加载器和脚本加载器应该由Dialog的clicks 驱动，只要返回数据到Dialog
   //默认章节位置 默认句子位置 增加I防止混淆变量名称
@@ -10,8 +9,8 @@ function IPlotLoader()
   // NOTE: 初始化的加载方法，用于开启新的游戏，从头开始读文件
   this.load=function(str_url,func_url)
   {
-    //把剧情分词和函数分词存储为Json对象
-    var final_obj={"plot_array":[],"func_array":[],"has_func":true}//剧情数组元素在前，函数数组元素在后
+    //把剧情分词和函数分词存储一个数组 此时为二维数组，一次性return
+    var final_obj={"plot_array":[],"func_array":[]}//剧情数组元素在前，函数数组元素在后
     //改用ajax同步方法 //async：false为同步 获取文本
     $.ajax({url:str_url,async:false,success:function(result)
         {
@@ -21,11 +20,6 @@ function IPlotLoader()
     $.ajax({url:func_url,async:false,success:function(result)
     {
       final_obj.func_array=result.split("\n")
-      final_obj.has_func=true
-    },error:function(xhr,status,error)
-    {
-      alert("此章节没有自定义js，不执行,执行has_func=false")
-      final_obj.has_func=false
     }})
     //最后返回数据数组
         return final_obj

@@ -111,7 +111,17 @@ this.create_Dialog=function(color)
      console.log(dataObj.plot_array);
     var tmp_li=$("<li class='historyView'>"+dataObj.plot_array[0]+"</li>")
     $("#HistoryPanel").append(tmp_li)
-    eval(dataObj.func_array[0])
+    if(data_obj.has_func==false)
+    {
+      // console.clear()
+      console.warn("#此章节对应自定义js文件不存在，不执行脚本,测试信息，请忽略")
+      alert("不存在js文件，跳过运算js代码")
+    }
+    if(data_obj.has_func==true)
+    {
+      console.warn("#存在js脚本，运算它");
+      eval(dataObj.func_array[0])
+    }
   }
   //加载已经存在的游戏进度时使用的方法
    dialog.setLoadContent=function(data_obj)
