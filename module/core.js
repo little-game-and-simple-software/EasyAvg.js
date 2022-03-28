@@ -1,6 +1,42 @@
 // NOTE: 核心类
 // TODO: 分辨率缩放？
+// 2022-3-28开始重构！
+function EasyAvg() //核心引擎类
+{
+  //框架内部计数器 单例对象
+  this.ClickCounter = function()
+  {
+    this.times = 0
+  }
+  //视觉小说对话框 单例对象
+  this.Dialog = function()
+  {
+    this.style = null
+  }
+  //图像对象 常用对象
+  this.Image = function(x, y, position, texture)
+  {
 
+  }
+  //舞台
+  this.Stage = function(x, y, width, height)
+  {
+
+  }
+}
+//EasyAvg的图层系统对象
+function Layers()
+{
+  this.LAYER_BG = 0
+  this.LAYER_CH = 1
+  this.LAYER_DIALOG = 2
+  //特殊实体对象
+  this.LAYER_ENTITY = 3
+  this.LAYER_ENTITY2 = 4
+  //播放视频的图层
+  this.LAYER_VIDEO = 5
+}
+//旧代码
 function EasyAvg()
 {
   // TODO: 以后单独设置剧情和脚本路径 便于用户自定义 ，默认路径不动 名称也不动
@@ -137,30 +173,38 @@ this.create_Dialog=function(color)
      eval(dataObj.func_array[lineIndex])
    }
    // NOTE: 默认dialog点击器
+   // NOTE：2022-3-28开始 准备且重构中
+   //点击翻页
+   EasyAvg.prototype.Dialog.nextPage = function()
+   {
+     clicks += 1
+     //下面的部分重构重写！（挖坑）
+   }
    dialog.click(function()
    {
-     clicks+=1
-     var line=dataObj.plot_array[clicks]
-     var lineCode=dataObj.func_array[clicks]
+     clicks += 1
+     var line = dataObj.plot_array[clicks]
+     var lineCode = dataObj.func_array[clicks]
      dialog.text(line)
-     if(line==">") //下一章
+     if(line ==">") //下一章
      {// NOTE: 进入下一章索引归零 并且章节索引+1
-       clicks=0
-       chapterIndex+=1 //组合成通用方法
-       dataObj=PlotLoader.load("../chapter/"+chapterIndex+".txt","../chapterScript/func"+chapterIndex+".js.txt")
+       clicks = 0
+       chapterIndex += 1 //组合成通用方法
+       dataObj = PlotLoader.load("../chapter/"+chapterIndex+".txt","../chapterScript/func"+chapterIndex+".js.txt")
        console.warn("#下一章文本");
        console.log(dataObj.plot_array[0]);
        dialog.text(dataObj.plot_array[0])
+       //实现面向对象并执行原生js的代码的核心原理-> eval()函数
        eval(dataObj.func_array[0])
        if(debugMode)
        {
          console.log("当前章节_"+chapterIndex);
        }
      }
-     if(line.indexOf("<")==0) //结尾
+     if(line.indexOf("<") == 0) //结尾
      {
        dialog.text("") //当有<时，不显示文字，因为是指令信息，不能显示出来！
-       if(line.split("<")[1]=="end")
+       if(line.split("<")[1] == "end")
        {
          alert("默认结束方法")
          window.open("../../fullExample/index.html","_self")
@@ -172,11 +216,11 @@ this.create_Dialog=function(color)
          window.open("../../fullExample/index.html","_self")
        }
      }
-     console.log("#当前句子_"+line);
-     console.log("#当前代码_"+lineCode);
+     console.log("#当前句子_" + line);
+     console.log("#当前代码_" + lineCode);
      eval(lineCode)
      //给历史记录添加文本
-      var tmp_li=$("<li class='historyView'>"+line+"</li>")
+      var tmp_li=$("<li class='historyView'>" + line + "</li>")
       $("#HistoryPanel").append(tmp_li)
      if(debugMode)
      {
@@ -184,27 +228,34 @@ this.create_Dialog=function(color)
      }
    })
    // NOTE: 清除计数器 把不是重要代码缩成一行
-   dialog.clearClicks=function(){
-    console.warn("#计数器清空")
-     clicks=0
+   dialog.clearClicks=function()
+   {
+     console.warn("#计数器清空")
+     clicks = 0
      console.warn("#计数器次数")
      console.log(clicks)
    }
    /* 是否显示调试信息*/
    dialog.setDebugLog=function(bool)
    {
-     debugMode=bool
-     if(bool){console.warn("Dialog调试模式已打开")}
-     else{console.warn("Dialog调试模式已关闭"); }
+     debugMode = bool
+     if(bool)
+     {
+       console.warn("Dialog调试模式已打开")
+     }
+     else
+     {
+       console.warn("Dialog调试模式已关闭");
+     }
    }
    //获得点击次数
-   dialog.getClicks=function()
+   dialog.getClicks = function()
    {
      return clicks
    }
-   dialog.getRuntimeIndex=function()
+   dialog.getRuntimeIndex = function()
    {
-     return chapterIndex+"_"+clicks
+     return chapterIndex + "_" + clicks
    }
    /*设置Dialog文字大小*/
    dialog.setFontSize=function(size)
@@ -214,23 +265,23 @@ this.create_Dialog=function(color)
    return dialog
 }
 /*音频相关*/
-this.showBgm=function()
+this.showBgm = function()
 {
   $("#bgm").css("display","block")
 }
-this.hideBgm=function()
+this.hideBgm = function()
 {
   $("#bgm").hide()
 }
-this.changeBgm=function(src)
+this.changeBgm = function(src)
 {
   $("#bgm").attr("src",src)
 }
 /*设置bgm音量，全局 必须是ID为bgm的元素 值0-1之间的float*/
-this.setBgmVolume=function(volume)
+this.setBgmVolume = function(volume)
 {
   console.warn("#设置音量！");
-  $("#bgm")[0].volume=volume
+  $("#bgm")[0].volume = volume
 }
 /*音频相关结束*/
 }
